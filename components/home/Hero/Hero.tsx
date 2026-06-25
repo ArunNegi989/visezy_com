@@ -6,16 +6,57 @@ import { motion } from "framer-motion";
 import {
   ArrowRight,
   Sparkles,
-  Users,
-  Brain,
-  BriefcaseBusiness,
-  Star,
   CheckCircle2,
 } from "lucide-react";
+import { useEffect, useState } from "react";
+import { getSliders } from "@/services/slider.service";
+
+interface Slider {
+  _id: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  primaryButtonText: string;
+  primaryButtonLink: string;
+  secondaryButtonText: string;
+  secondaryButtonLink: string;
+  image: string;
+  order: number;
+  isActive: boolean;
+}
 
 export default function Hero() {
+  const [sliders, setSliders] = useState<Slider[]>([]);
+
+  const [current, setCurrent] = useState(0);
+  const slider = sliders[current];
+  useEffect(() => {
+    const load = async () => {
+      const data = await getSliders();
+
+      if (data.success) {
+        setSliders(data.sliders);
+      }
+    };
+
+    load();
+  }, []);
+  const imageUrl =
+    slider?.image?.startsWith("http")
+      ? slider.image
+      : `${process.env.NEXT_PUBLIC_API_URL}/${slider?.image}`;
+  useEffect(() => {
+    if (!sliders.length) return;
+
+    const interval = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % sliders.length);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [sliders]);
+
   return (
-    <section className="relative overflow-hidden bg-white pt-32 pb-24 lg:pt-36 lg:pb-32">
+    <section className="relative overflow-hidden bg-white pt-2 pb-24 lg:pt-16 lg:pb-32">
       {/* Background Effects */}
       <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_top_right,rgba(59,130,246,0.14),transparent_40%)]" />
 
@@ -48,13 +89,12 @@ export default function Hero() {
               transition={{ delay: 0.2, duration: 0.7 }}
               className="max-w-3xl text-5xl font-extrabold leading-[1.05] tracking-tight text-slate-900 md:text-6xl xl:text-7xl"
             >
-              We make Hiring
+              {slider?.title}
 
               <span className="mt-2 block bg-gradient-to-r from-blue-600 via-violet-600 to-purple-600 bg-clip-text text-transparent">
                 Simple, Fast
               </span>
-
-              and Effective with AI
+              {slider?.subtitle}
             </motion.h1>
 
             <motion.p
@@ -63,8 +103,7 @@ export default function Hero() {
               transition={{ delay: 0.3, duration: 0.7 }}
               className="mt-8 max-w-2xl text-lg leading-8 text-slate-600"
             >
-              Connect with top talent faster using intelligent screening,
-              automated workflows, and AI-powered candidate matching.
+              {slider?.description}
             </motion.p>
 
             {/* Feature Pills */}
@@ -101,11 +140,10 @@ export default function Hero() {
               transition={{ delay: 0.45, duration: 0.7 }}
               className="mt-10 flex flex-col gap-4 sm:flex-row"
             >
-              <Link
-                href="/contact"
+              <Link href={slider?.primaryButtonLink || "/contact"}
                 className="group inline-flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-blue-600 to-violet-600 px-8 py-4 font-semibold text-white shadow-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(79,70,229,0.35)]"
               >
-                Get Started
+                {slider?.primaryButtonText}
 
                 <ArrowRight
                   size={18}
@@ -113,11 +151,11 @@ export default function Hero() {
                 />
               </Link>
 
-              <Link
-                href="/employees"
+              <Link href={slider?.secondaryButtonLink || "/employees"}
+
                 className="inline-flex items-center justify-center rounded-2xl border border-slate-200 bg-white px-8 py-4 font-semibold text-slate-700 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-200 hover:bg-blue-50 hover:shadow-lg"
               >
-                Employees Get Hired
+                {slider?.secondaryButtonText}
               </Link>
             </motion.div>
 
@@ -172,18 +210,15 @@ export default function Hero() {
             {/* Main Image Card */}
             <div className="relative overflow-hidden rounded-[42px] border border-slate-200/80 bg-white p-3 shadow-[0_30px_80px_rgba(15,23,42,0.12)]">
               <div className="overflow-hidden rounded-[34px]">
-                <Image
-                  src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1400&auto=format&fit=crop"
-                  alt="Recruitment team collaboration"
-                  width={900}
-                  height={700}
-                  priority
+                <img
+                  src={imageUrl || "/hero.jpg"}
+                  alt={slider?.title || "Hero"}
                   className="h-[580px] w-full object-cover transition-transform duration-700 hover:scale-105"
                 />
               </div>
             </div>
 
-          
+
           </motion.div>
         </div>
       </div>

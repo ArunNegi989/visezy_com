@@ -8,6 +8,7 @@ import {
   BookOpen,
   Images,
   Mail,
+  BriefcaseBusiness,
   Settings,
   LogOut,
   Globe,
@@ -17,7 +18,6 @@ import {
 
 import { useAdmin } from "@/app/context/AdminContext";
 import styles from "./Sidebar.module.css";
-
 const menu = [
   {
     title: "Dashboard",
@@ -40,11 +40,17 @@ const menu = [
     icon: Mail,
   },
   {
+    title: "Career Applications",
+    href: "/admin/careers",
+    icon: BriefcaseBusiness,
+  },
+  {
     title: "Settings",
     href: "/admin/settings",
     icon: Settings,
   },
 ];
+
 
 export default function AdminSidebar() {
   const pathname = usePathname();
@@ -104,55 +110,50 @@ export default function AdminSidebar() {
       {/* Menu */}
 
       <nav className={styles.menu}>
-        {menu.map((item) => {
-          const Icon = item.icon;
+  <div className={styles.menuTop}>
+    {menu.map((item) => {
+      const Icon = item.icon;
 
-          const active =
-            pathname === item.href ||
-            pathname.startsWith(item.href + "/");
+      const active =
+        item.href === "/admin"
+          ? pathname === "/admin"
+          : pathname.startsWith(item.href);
 
-          return (
-            <Link
-              key={item.href}
-              href={item.href}
-              onClick={closeMobileSidebar}
-              className={`${styles.item} ${
-                active ? styles.active : ""
-              }`}
-            >
-              <Icon size={20} />
-
-              {!collapsed && (
-                <span>{item.title}</span>
-              )}
-            </Link>
-          );
-        })}
-      </nav>
-
-      {/* Footer */}
-
-      <div className={styles.footer}>
+      return (
         <Link
-          href="/"
-          target="_blank"
-          className={styles.item}
+          key={item.href}
+          href={item.href}
+          onClick={closeMobileSidebar}
+          className={`${styles.item} ${active ? styles.active : ""}`}
         >
-          <Globe size={20} />
+          <Icon size={20} />
 
-          {!collapsed && (
-            <span>Visit Website</span>
-          )}
+          {!collapsed && <span>{item.title}</span>}
         </Link>
+      );
+    })}
+  </div>
 
-        <button className={styles.logout}>
-          <LogOut size={20} />
+  <div className={styles.bottomActions}>
+    <div className={styles.divider} />
 
-          {!collapsed && (
-            <span>Logout</span>
-          )}
-        </button>
-      </div>
+    <Link
+      href="/"
+      target="_blank"
+      className={styles.item}
+    >
+      <Globe size={20} />
+
+      {!collapsed && <span>Visit Website</span>}
+    </Link>
+
+    <button className={styles.logout}>
+      <LogOut size={20} />
+
+      {!collapsed && <span>Logout</span>}
+    </button>
+  </div>
+</nav>
     </aside>
   );
 }
