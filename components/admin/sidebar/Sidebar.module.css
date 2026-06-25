@@ -1,0 +1,302 @@
+.sidebar {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 280px;
+  height: 100dvh;
+  background: #ffffff;
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: width .3s ease, transform .3s ease;
+  z-index: 1000;
+}
+
+.collapsed {
+  width: 92px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+  color: inherit;
+  min-width: 0;
+}
+
+.logo img {
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.logo h2 {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--foreground);
+  line-height: 1;
+}
+
+.logo span {
+  display: block;
+  margin-top: 4px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.collapseBtn {
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #fff;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: .25s;
+}
+
+.collapseBtn:hover {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+}
+
+.menu {
+  flex: 1;
+  padding: 20px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  overflow-y: auto;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  text-decoration: none;
+  color: var(--muted);
+  font-weight: 500;
+  transition: .25s;
+}
+
+.item svg {
+  flex-shrink: 0;
+}
+
+.item:hover {
+  background: rgba(37, 99, 235, .08);
+  color: var(--primary);
+}
+
+.active {
+  background: linear-gradient(135deg,#2563eb,#1d4ed8);
+  color: #fff;
+  box-shadow: 0 12px 24px rgba(37,99,235,.25);
+}
+
+.active:hover {
+  color: #fff;
+}
+
+.collapsed .logo h2,
+.collapsed .logo span,
+.collapsed .item span {
+  display: none;
+}
+
+.collapsed .item {
+  justify-content: center;
+  padding-inline: 0;
+}
+
+.collapsed .logo {
+  justify-content: center;
+}
+
+/* ===========================
+   FOOTER
+=========================== */
+
+.footer {
+  border-top: 1px solid var(--border);
+  padding: 16px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.logout {
+  width: 100%;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background: transparent;
+
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  padding: 14px 16px;
+
+  border-radius: 14px;
+
+  color: #ef4444;
+  font-size: 15px;
+  font-weight: 600;
+
+  transition: .25s;
+}
+
+.logout:hover {
+  background: rgba(239,68,68,.08);
+}
+
+.collapsed .logout span {
+  display: none;
+}
+
+.collapsed .logout {
+  justify-content: center;
+  padding-inline: 0;
+}
+
+/* ===========================
+   SCROLLBAR
+=========================== */
+
+.menu::-webkit-scrollbar {
+  width: 6px;
+}
+
+.menu::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 20px;
+}
+
+.menu::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* ===========================
+   OVERLAY
+=========================== */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15,23,42,.55);
+  backdrop-filter: blur(3px);
+  z-index: 998;
+
+  animation: fade .25s ease;
+}
+
+@keyframes fade {
+
+  from{
+    opacity:0;
+  }
+
+  to{
+    opacity:1;
+  }
+
+}
+
+/* ===========================
+   MOBILE
+=========================== */
+
+@media (max-width:992px){
+
+.sidebar{
+
+position:fixed;
+
+left:0;
+
+top:0;
+
+transform:translateX(-100%);
+
+width:280px;
+
+box-shadow:0 20px 50px rgba(0,0,0,.15);
+
+}
+
+.mobileOpen{
+
+transform:translateX(0);
+
+}
+
+.collapsed{
+
+width:280px;
+
+}
+
+.collapsed .logo h2,
+.collapsed .logo span,
+.collapsed .item span,
+.collapsed .logout span{
+
+display:block;
+
+}
+
+.collapsed .item,
+.collapsed .logout{
+
+justify-content:flex-start;
+
+padding-inline:16px;
+
+}
+
+.collapseBtn{
+
+display:none;
+
+}
+
+}
+
+@media(max-width:640px){
+
+.sidebar{
+
+width:260px;
+
+}
+
+}
+
+/* ===========================
+   DESKTOP
+=========================== */
+
+@media(min-width:993px){
+
+.overlay{
+
+display:none;
+
+}
+
+}

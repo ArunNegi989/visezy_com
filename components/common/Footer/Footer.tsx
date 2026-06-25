@@ -68,7 +68,7 @@ export default function Footer() {
                 </p>
 
                 <Link
-                  href="/submit-resume"
+                  href="/employees"
                   className="block text-slate-600 transition-colors hover:text-blue-600"
                 >
                   Submit Resume
@@ -98,7 +98,7 @@ export default function Footer() {
 
             <div className="space-y-3">
               <Link
-                href="/faq"
+                href="/#faq"
                 className="block text-slate-600 transition-colors hover:text-blue-600"
               >
                 FAQ

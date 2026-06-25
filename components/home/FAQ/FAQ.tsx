@@ -22,7 +22,7 @@ export default function FAQ() {
   const [open, setOpen] = useState(0);
 
   return (
-    <section className="bg-slate-50 py-24">
+    <section id="faq" className="bg-slate-50 py-24 scroll-mt-24">
       <div className="container grid gap-16 lg:grid-cols-2">
         <div>
           <h2 className="text-4xl font-bold">
