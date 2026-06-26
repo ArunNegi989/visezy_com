@@ -1,0 +1,442 @@
+/* ===========================
+   NAVBAR
+=========================== */
+
+.navbar{
+    height:72px;
+    background:#fff;
+    border-bottom:1px solid var(--border);
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 28px;
+
+    position:sticky;
+    top:0;
+    z-index:900;
+}
+
+/* ===========================
+   LEFT
+=========================== */
+
+.left{
+    display:flex;
+    align-items:center;
+    gap:18px;
+}
+
+.left h2{
+    font-size:22px;
+    font-weight:700;
+    color:var(--foreground);
+}
+
+.left span{
+    display:block;
+    margin-top:2px;
+    font-size:13px;
+    color:var(--muted);
+}
+
+/* ===========================
+   MENU BUTTON
+=========================== */
+
+.menuBtn{
+
+display:none;
+
+width:42px;
+
+height:42px;
+
+border-radius:12px;
+
+border:1px solid var(--border);
+
+background:#fff;
+
+cursor:pointer;
+
+transition:.25s;
+
+}
+
+.menuBtn:hover{
+
+background:var(--primary);
+
+color:#fff;
+
+border-color:var(--primary);
+
+}
+
+/* ===========================
+   SEARCH
+=========================== */
+
+.center{
+
+flex:1;
+
+display:flex;
+
+justify-content:center;
+
+padding-inline:40px;
+
+}
+
+.search{
+
+width:100%;
+
+max-width:420px;
+
+display:flex;
+
+align-items:center;
+
+gap:12px;
+
+padding:0 16px;
+
+height:46px;
+
+background:#f8fafc;
+
+border:1px solid var(--border);
+
+border-radius:14px;
+
+transition:.25s;
+
+}
+
+.search:focus-within{
+
+border-color:var(--primary);
+
+box-shadow:0 0 0 4px rgba(37,99,235,.12);
+
+}
+
+.search input{
+
+width:100%;
+
+border:none;
+
+outline:none;
+
+background:transparent;
+
+font-size:15px;
+
+color:var(--foreground);
+
+}
+
+.search input::placeholder{
+
+color:#94a3b8;
+
+}
+
+/* ===========================
+   RIGHT
+=========================== */
+
+.right{
+
+display:flex;
+
+align-items:center;
+
+gap:14px;
+
+}
+
+.iconBtn{
+
+width:46px;
+
+height:46px;
+
+display:grid;
+
+place-items:center;
+
+background:#fff;
+
+border:1px solid var(--border);
+
+border-radius:14px;
+
+cursor:pointer;
+
+transition:.25s;
+
+}
+
+.iconBtn:hover{
+
+background:var(--primary);
+
+border-color:var(--primary);
+
+color:#fff;
+
+transform:translateY(-2px);
+
+}
+
+/* ===========================
+   PROFILE
+=========================== */
+
+.profileWrapper{
+
+position:relative;
+
+}
+
+.profileBtn{
+
+display:flex;
+
+align-items:center;
+
+gap:14px;
+
+padding:8px 10px;
+
+background:#fff;
+
+border:1px solid var(--border);
+
+border-radius:16px;
+
+cursor:pointer;
+
+transition:.25s;
+
+}
+
+.profileBtn:hover{
+
+border-color:var(--primary);
+
+box-shadow:0 8px 20px rgba(37,99,235,.12);
+
+}
+
+.avatar{
+
+border-radius:50%;
+
+object-fit:cover;
+
+}
+
+.profileInfo h4{
+
+font-size:15px;
+
+font-weight:700;
+
+color:var(--foreground);
+
+line-height:1;
+
+}
+
+.profileInfo span{
+
+font-size:12px;
+
+color:var(--muted);
+
+}
+
+.chevron{
+
+transition:.25s;
+
+}
+
+.rotate{
+
+transform:rotate(180deg);
+
+}
+
+/* ===========================
+   DROPDOWN
+=========================== */
+
+.dropdown{
+
+position:absolute;
+
+top:calc(100% + 12px);
+
+right:0;
+
+width:230px;
+
+background:#fff;
+
+border:1px solid var(--border);
+
+border-radius:18px;
+
+box-shadow:0 20px 50px rgba(15,23,42,.12);
+
+padding:10px;
+
+display:flex;
+
+flex-direction:column;
+
+animation:dropdown .2s ease;
+
+z-index:1000;
+
+}
+
+@keyframes dropdown{
+
+from{
+
+opacity:0;
+
+transform:translateY(-8px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+
+.dropdownItem{
+
+display:flex;
+
+align-items:center;
+
+gap:14px;
+
+padding:14px;
+
+text-decoration:none;
+
+color:var(--foreground);
+
+border:none;
+
+background:transparent;
+
+cursor:pointer;
+
+font-size:15px;
+
+border-radius:12px;
+
+transition:.25s;
+
+}
+
+.dropdownItem:hover{
+
+background:#f8fafc;
+
+color:var(--primary);
+
+}
+
+.logoutItem{
+
+color:#ef4444;
+
+}
+
+.logoutItem:hover{
+
+background:rgba(239,68,68,.08);
+
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+
+@media(max-width:992px){
+
+.menuBtn{
+
+display:grid;
+
+place-items:center;
+
+}
+
+.center{
+
+display:none;
+
+}
+
+.profileInfo{
+
+display:none;
+
+}
+
+.profileBtn{
+
+padding:6px;
+
+}
+
+}
+
+@media(max-width:640px){
+
+.navbar{
+
+padding-inline:16px;
+
+}
+
+.left h2{
+
+font-size:18px;
+
+}
+
+.left span{
+
+display:none;
+
+}
+
+.iconBtn{
+
+width:42px;
+
+height:42px;
+
+}
+
+}

@@ -1,0 +1,312 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.header h1 {
+  font-size: 34px;
+  font-weight: 700;
+  color: var(--foreground);
+}
+
+.header p {
+  margin-top: 8px;
+  color: var(--muted);
+}
+
+.publishBtn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  border: none;
+  cursor: pointer;
+
+  padding: 14px 24px;
+
+  border-radius: 14px;
+
+  background: linear-gradient(135deg,
+      var(--primary),
+      var(--secondary));
+
+  color: #fff;
+
+  font-weight: 600;
+
+  transition: .3s;
+}
+
+.publishBtn:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* ======================== */
+
+.grid {
+  display: grid;
+  grid-template-columns: 2fr 420px;
+  gap: 24px;
+}
+
+.left,
+.right {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ======================== */
+
+.card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  padding: 26px;
+  box-shadow: var(--shadow-sm);
+}
+
+.card h3 {
+  margin-bottom: 24px;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+/* ======================== */
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.field:last-child {
+  margin-bottom: 0;
+}
+
+.field label {
+  font-weight: 600;
+}
+
+.field input,
+.field textarea,
+.field select {
+  width: 100%;
+  padding: 15px 18px;
+
+  border-radius: 14px;
+  border: 1px solid var(--border);
+
+  outline: none;
+
+  font-size: 15px;
+
+  transition: .25s;
+}
+
+.field textarea {
+  resize: vertical;
+}
+
+.field input:focus,
+.field textarea:focus,
+.field select:focus {
+  border-color: var(--primary);
+}
+
+/* ======================== */
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+/* ======================== */
+
+.editorArea {
+  width: 100%;
+  min-height: 420px;
+
+  resize: vertical;
+
+  border: 1px solid var(--border);
+
+  border-radius: 16px;
+
+  padding: 18px;
+
+  outline: none;
+
+  font-size: 15px;
+}
+
+/* ======================== */
+
+.uploadBox {
+  border: 2px dashed var(--border);
+  border-radius: 18px;
+
+  height: 200px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  gap: 14px;
+
+  cursor: pointer;
+
+  color: var(--muted);
+
+  transition: .3s;
+}
+
+.uploadBox:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+/* ======================== */
+
+.preview {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 16px;
+  margin-bottom: 18px;
+  border: 1px solid var(--border);
+  background: #f8fafc;
+}
+
+/* ======================== */
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60vh;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+/* ======================== */
+
+@media (max-width:1200px) {
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .right {
+    order: -1;
+  }
+
+}
+
+@media(max-width:768px) {
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .publishBtn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .row {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    padding: 20px;
+  }
+
+  .header h1 {
+    font-size: 28px;
+  }
+
+  .editorArea {
+    min-height: 300px;
+  }
+
+}
+
+@media(max-width:480px) {
+
+  .wrapper {
+    gap: 20px;
+  }
+
+  .card {
+    padding: 18px;
+  }
+
+  .field input,
+  .field textarea,
+  .field select {
+    padding: 13px 15px;
+  }
+
+  .uploadBox {
+    height: 170px;
+  }
+
+  .preview {
+    height: 180px;
+  }
+
+}
+.preview {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 14px;
+    border: 1px solid #e5e7eb;
+    margin-bottom: 16px;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 16px;
+}
+
+.field input {
+    width: 100%;
+    height: 46px;
+    border: 1px solid #dbe2ea;
+    border-radius: 10px;
+    padding: 0 14px;
+    font-size: 14px;
+}
+
+.field input:focus {
+    outline: none;
+    border-color: #2563eb;
+}

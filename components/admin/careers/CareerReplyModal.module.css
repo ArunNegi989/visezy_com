@@ -1,0 +1,185 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15,23,42,.55);
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+  z-index: 9999;
+}
+
+.modal {
+  width: 100%;
+  max-width: 720px;
+  background: #fff;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(15,23,42,.18);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 28px 32px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.header h2 {
+  font-size: 28px;
+  color: #0f172a;
+}
+
+.header p {
+  margin-top: 4px;
+  color: #64748b;
+}
+
+.closeBtn {
+  width: 46px;
+  height: 46px;
+  border: none;
+  border-radius: 12px;
+  background: #f1f5f9;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  cursor:pointer;
+  transition:.25s;
+}
+
+.closeBtn:hover{
+background:#e2e8f0;
+}
+
+.body{
+padding:30px;
+display:flex;
+flex-direction:column;
+gap:22px;
+}
+
+.field{
+display:flex;
+flex-direction:column;
+gap:10px;
+}
+
+.field label{
+font-size:14px;
+font-weight:700;
+color:#334155;
+}
+
+.field input,
+.field textarea{
+width:100%;
+border:1px solid #dbe2ea;
+border-radius:14px;
+padding:14px 18px;
+font-size:15px;
+outline:none;
+transition:.25s;
+font-family:inherit;
+}
+
+.field input:focus,
+.field textarea:focus{
+border-color:#2563eb;
+box-shadow:0 0 0 4px rgba(37,99,235,.1);
+}
+
+.field textarea{
+resize:vertical;
+min-height:220px;
+}
+
+.footer{
+display:flex;
+justify-content:flex-end;
+gap:14px;
+padding:24px 30px;
+border-top:1px solid #e2e8f0;
+}
+
+.cancelBtn,
+.sendBtn{
+height:50px;
+padding:0 28px;
+border:none;
+border-radius:14px;
+font-weight:700;
+cursor:pointer;
+display:flex;
+align-items:center;
+justify-content:center;
+gap:10px;
+transition:.25s;
+}
+
+.cancelBtn{
+background:#f1f5f9;
+color:#334155;
+}
+
+.cancelBtn:hover{
+background:#e2e8f0;
+}
+
+.sendBtn{
+background:#2563eb;
+color:#fff;
+}
+
+.sendBtn:hover{
+background:#1d4ed8;
+}
+
+.sendBtn:disabled{
+opacity:.65;
+cursor:not-allowed;
+}
+
+.spin{
+animation:spin 1s linear infinite;
+}
+
+@keyframes spin{
+from{
+transform:rotate(0deg);
+}
+to{
+transform:rotate(360deg);
+}
+}
+
+@media(max-width:768px){
+
+.modal{
+max-width:100%;
+}
+
+.body{
+padding:22px;
+}
+
+.header{
+padding:22px;
+}
+
+.header h2{
+font-size:22px;
+}
+
+.footer{
+flex-direction:column;
+}
+
+.cancelBtn,
+.sendBtn{
+width:100%;
+}
+
+}
