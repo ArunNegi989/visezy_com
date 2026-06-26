@@ -18,6 +18,7 @@ import {
 
 import { useAdmin } from "@/app/context/AdminContext";
 import styles from "./Sidebar.module.css";
+
 const menu = [
   {
     title: "Dashboard",
@@ -54,7 +55,6 @@ const menu = [
 
 export default function AdminSidebar() {
   const pathname = usePathname();
-
   const {
     collapsed,
     mobileOpen,
@@ -132,26 +132,6 @@ export default function AdminSidebar() {
         </Link>
       );
     })}
-  </div>
-
-  <div className={styles.bottomActions}>
-    <div className={styles.divider} />
-
-    <Link
-      href="/"
-      target="_blank"
-      className={styles.item}
-    >
-      <Globe size={20} />
-
-      {!collapsed && <span>Visit Website</span>}
-    </Link>
-
-    <button className={styles.logout}>
-      <LogOut size={20} />
-
-      {!collapsed && <span>Logout</span>}
-    </button>
   </div>
 </nav>
     </aside>

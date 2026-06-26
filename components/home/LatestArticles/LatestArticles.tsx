@@ -1,28 +1,32 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
-const articles = [
-  {
-    title: "Top Recruitment Trends in 2026",
-    image:
-      "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1200&auto=format&fit=crop",
-    category: "Recruitment",
-  },
-  {
-    title: "How AI is Transforming Hiring",
-    image:
-      "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1200&auto=format&fit=crop",
-    category: "AI Hiring",
-  },
-  {
-    title: "Contract Staffing vs Direct Hiring",
-    image:
-      "https://images.unsplash.com/photo-1556740749-887f6717d7e4?q=80&w=1200&auto=format&fit=crop",
-    category: "Staffing",
-  },
-];
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-export default function LatestArticles() {
+async function getLatestBlogs() {
+  try {
+    const res = await fetch(`${API_URL}/api/blogs?limit=3`, {
+      next: {
+        revalidate: 60,
+      },
+    });
+
+    if (!res.ok) {
+      return [];
+    }
+
+    const data = await res.json();
+
+    return data.blogs || [];
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+}
+
+export default async function LatestArticles() {
+  const articles = await getLatestBlogs();
+
   return (
     <section className="py-24">
       <div className="container">
@@ -47,44 +51,44 @@ export default function LatestArticles() {
         </div>
 
         <div className="grid gap-8 lg:grid-cols-3">
-          {articles.map((article) => (
+          {articles.map((article: any) => (
             <article
-              key={article.title}
+              key={article._id}
               className="group overflow-hidden rounded-[28px] border border-slate-200 bg-white shadow-sm transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl"
             >
-              <div className="relative h-64 overflow-hidden">
-                <img
-                  src={article.image}
-                  alt={article.title}
-                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/50 via-slate-900/10 to-transparent" />
-
-                <span className="absolute left-5 top-5 rounded-full bg-white/90 px-3 py-1 text-sm font-medium text-blue-600 backdrop-blur-sm">
-                  {article.category}
-                </span>
-              </div>
-
-              <div className="p-8">
-                <h3 className="text-2xl font-bold leading-snug text-slate-900 transition-colors duration-300 group-hover:text-blue-600">
-                  {article.title}
-                </h3>
-
-                <p className="mt-4 text-slate-600">
-                  Explore the latest insights, strategies, and innovations
-                  shaping the future of recruitment and talent acquisition.
-                </p>
-
-                <div className="mt-6 inline-flex items-center gap-2 font-semibold text-blue-600">
-                  Read Article
-
-                  <ArrowRight
-                    size={18}
-                    className="transition-transform duration-300 group-hover:translate-x-1"
+              <Link href={`/blogs/${article.slug}`}>
+                <div className="relative h-64 overflow-hidden">
+                  <img
+                    src={article.thumbnail}
+                    alt={article.title}
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
+
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/50 via-slate-900/10 to-transparent" />
+
+                  <span className="absolute left-5 top-5 rounded-full bg-white/90 px-3 py-1 text-sm font-medium text-blue-600 backdrop-blur-sm">
+                    {article.category}
+                  </span>
                 </div>
-              </div>
+
+                <div className="p-8">
+                  <h3 className="text-2xl font-bold leading-snug text-slate-900 transition-colors duration-300 group-hover:text-blue-600">
+                    {article.title}
+                  </h3>
+
+                  <p className="mt-4 line-clamp-3 text-slate-600">
+                    {article.shortDescription}
+                  </p>
+
+                  <div className="mt-6 inline-flex items-center gap-2 font-semibold text-blue-600">
+                    Read Article
+                    <ArrowRight
+                      size={18}
+                      className="transition-transform duration-300 group-hover:translate-x-1"
+                    />
+                  </div>
+                </div>
+              </Link>
             </article>
           ))}
         </div>

@@ -3,6 +3,10 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { logout } from "@/services/auth.service";
+import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
+import { createPortal } from "react-dom";
 
 import {
   User,
@@ -15,7 +19,13 @@ import styles from "./Navbar.module.css";
 
 export default function ProfileDropdown() {
   const [open, setOpen] = useState(false);
+  const router = useRouter();
 
+  const [showLogoutModal, setShowLogoutModal] =
+    useState(false);
+
+  const [loading, setLoading] =
+    useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -56,7 +66,47 @@ export default function ProfileDropdown() {
       );
     };
   }, []);
+  useEffect(() => {
 
+    document.body.style.overflow =
+      showLogoutModal
+        ? "hidden"
+        : "";
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+
+  }, [showLogoutModal]);
+  const handleLogout = async () => {
+
+    try {
+
+      setLoading(true);
+
+      const { data } = await logout();
+
+      toast.success(data.message);
+
+      router.replace("/admin/login");
+
+      router.refresh();
+
+    } catch {
+
+      toast.error("Logout failed.");
+
+    } finally {
+
+      setLoading(false);
+
+      setShowLogoutModal(false);
+
+      setOpen(false);
+
+    }
+
+  };
   return (
     <div
       className={styles.profileWrapper}
@@ -81,9 +131,8 @@ export default function ProfileDropdown() {
 
         <ChevronDown
           size={18}
-          className={`${styles.chevron} ${
-            open ? styles.rotate : ""
-          }`}
+          className={`${styles.chevron} ${open ? styles.rotate : ""
+            }`}
         />
       </button>
 
@@ -92,27 +141,82 @@ export default function ProfileDropdown() {
           <Link
             href="/admin/profile"
             className={styles.dropdownItem}
+            onClick={() => setOpen(false)}
           >
             <User size={18} />
             <span>Profile</span>
           </Link>
 
           <Link
-            href="/admin/change-password"
+            href="/admin/profile/change-password"
             className={styles.dropdownItem}
+            onClick={() => setOpen(false)}
           >
             <KeyRound size={18} />
             <span>Change Password</span>
           </Link>
-
           <button
             className={`${styles.dropdownItem} ${styles.logoutItem}`}
+            onClick={() => {
+              setOpen(false);
+              setShowLogoutModal(true);
+            }}
           >
             <LogOut size={18} />
             <span>Logout</span>
           </button>
         </div>
       )}
+{
+  typeof window !== "undefined" &&
+  showLogoutModal &&
+  createPortal(
+    <>
+      <div
+        className={styles.modalOverlay}
+        onClick={() => setShowLogoutModal(false)}
+      />
+
+      <div className={styles.logoutModal}>
+
+        <div className={styles.modalIcon}>
+          <LogOut size={30} />
+        </div>
+
+        <h3>Logout?</h3>
+
+        <p>
+          Are you sure you want to logout
+          from the admin dashboard?
+        </p>
+
+        <div className={styles.modalActions}>
+
+          <button
+            className={styles.cancelBtn}
+            onClick={() => setShowLogoutModal(false)}
+          >
+            Cancel
+          </button>
+
+          <button
+            className={styles.logoutBtn}
+            onClick={handleLogout}
+            disabled={loading}
+          >
+            {loading
+              ? "Logging out..."
+              : "Logout"}
+          </button>
+
+        </div>
+
+      </div>
+    </>,
+    document.body
+  )
+}
     </div>
+
   );
 }
