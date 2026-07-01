@@ -370,26 +370,26 @@ export default function ContactsPage() {
                                                 <button
                                                     className={styles.viewBtn}
                                                     title="View Details"
-                                                   onClick={async () => {
-  try {
-    const data = await markAsRead(contact._id);
+                                                    onClick={async () => {
+                                                        try {
+                                                            const data = await markAsRead(contact._id);
 
-    if (!data.success) {
-      throw new Error(data.message);
-    }
+                                                            if (!data.success) {
+                                                                throw new Error(data.message);
+                                                            }
 
-    await fetchContacts();
+                                                            await fetchContacts();
 
-    setSelectedContact({
-      ...contact,
-      isRead: true,
-    });
+                                                            setSelectedContact({
+                                                                ...contact,
+                                                                isRead: true,
+                                                            });
 
-    setShowViewModal(true);
-  } catch (err: any) {
-    toast.error(err.message);
-  }
-}}
+                                                            setShowViewModal(true);
+                                                        } catch (err: any) {
+                                                            toast.error(err.message);
+                                                        }
+                                                    }}
                                                 >
                                                     <Eye size={18} />
                                                 </button>

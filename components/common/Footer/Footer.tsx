@@ -19,7 +19,7 @@ export default function Footer() {
             </h3>
 
             <p className="mt-1 text-sm text-slate-500">
-              Staffing Solutions
+              Solutions
             </p>
           </div>
 
