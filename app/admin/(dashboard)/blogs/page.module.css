@@ -110,10 +110,7 @@
   transition: .25s;
 }
 
-.filterBtn:hover {
-  background: var(--primary);
-  color: white;
-}
+
 
 /* ========================= */
 
