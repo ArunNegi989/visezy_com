@@ -10,10 +10,11 @@ import {
     Pencil,
     Trash2,
     Eye,
-    Filter,
     ChevronLeft,
     ChevronRight,
 } from "lucide-react";
+
+import { getBlogFilters } from "../../../../services/blog.service"
 
 import styles from "./page.module.css";
 
@@ -26,6 +27,7 @@ interface Blog {
     status: string;
     views: number;
     createdAt: string;
+    thumbnail: string;
 }
 
 interface Pagination {
@@ -52,6 +54,24 @@ export default function BlogsPage() {
 
     const [page, setPage] = useState(1);
 
+    const [categories, setCategories] = useState<string[]>([]);
+    const [statuses, setStatuses] = useState<string[]>([]);
+
+    const fetchFilters = async () => {
+        try {
+            const { categories, statuses } =
+                await getBlogFilters();
+
+            setCategories(categories);
+            setStatuses(statuses);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    useEffect(() => {
+        fetchFilters();
+    }, []);
     const [pagination, setPagination] = useState<Pagination>({
         currentPage: 1,
         perPage: 10,
@@ -176,13 +196,12 @@ export default function BlogsPage() {
                     }}
                 >
                     <option value="">All Categories</option>
-                    <option value="Web Development">
-                        Web Development
-                    </option>
-                    <option value="UI/UX">UI/UX</option>
-                    <option value="SEO">SEO</option>
-                    <option value="AI">AI</option>
-                    <option value="DevOps">DevOps</option>
+
+                    {categories.map((item) => (
+                        <option key={item} value={item}>
+                            {item}
+                        </option>
+                    ))}
                 </select>
 
                 <select
@@ -194,8 +213,12 @@ export default function BlogsPage() {
                     }}
                 >
                     <option value="">All Status</option>
-                    <option value="Published">Published</option>
-                    <option value="Draft">Draft</option>
+
+                    {statuses.map((item) => (
+                        <option key={item} value={item}>
+                            {item}
+                        </option>
+                    ))}
                 </select>
 
                 <select
@@ -216,6 +239,7 @@ export default function BlogsPage() {
                 <table>
                     <thead>
                         <tr>
+                            <th>Image</th>
                             <th>Title</th>
                             <th>Category</th>
                             <th>Author</th>
@@ -262,6 +286,12 @@ export default function BlogsPage() {
                         ) : (
                             blogs.map((blog) => (
                                 <tr key={blog._id}>
+                                    <td><img src={blog.thumbnail}
+                                        height={100}
+                                        width={150}
+                                        alt={blog.title}
+                                        className={styles.image} />
+                                    </td>
                                     <td>
                                         <strong>{blog.title}</strong>
                                     </td>

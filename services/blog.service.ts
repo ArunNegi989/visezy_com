@@ -123,3 +123,12 @@ export const deleteBlog = async (id: string) => {
 
   return data;
 };
+
+
+export const getBlogFilters = async () => {
+  const { data } = await axios.get(
+    `${API}/api/blogs/filters`
+  );
+
+  return data;
+};

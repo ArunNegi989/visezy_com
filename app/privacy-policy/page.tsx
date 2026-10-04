@@ -1,3 +1,5 @@
+"use client";
+
 import CTA from "@/components/common/CTA/CTA";
 import {
   ShieldCheck,
@@ -6,6 +8,7 @@ import {
   Mail,
   CheckCircle2,
 } from "lucide-react";
+import { motion } from "framer-motion";
 
 const sections = [
   {
@@ -48,14 +51,34 @@ const sections = [
       "We retain your information only as long as necessary to provide our services, fulfill legal obligations, resolve disputes, and enforce agreements.",
   },
 ];
+
 export default function PrivacyPolicyPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden pt-32 pb-24">
+      <motion.section
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+        className="relative overflow-hidden pt-32 pb-24"
+      >
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(37,99,235,.12),transparent_35%)]" />
 
-        <div className="absolute left-0 top-20 h-72 w-72 rounded-full bg-blue-100/60 blur-3xl" />
+        <motion.div
+          className="absolute left-0 top-20 h-72 w-72 rounded-full bg-blue-100/60 blur-3xl"
+          animate={{
+            scale: [1, 1.15, 1],
+            x: [0, 20, 0],
+            y: [0, -20, 0],
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+
         <div className="absolute right-0 top-32 h-72 w-72 rounded-full bg-violet-100/60 blur-3xl" />
 
         <div className="container relative">
@@ -82,24 +105,51 @@ export default function PrivacyPolicyPage() {
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Quick Navigation */}
       <section className="pb-10">
         <div className="container">
-          <div className="grid gap-4 md:grid-cols-5">
+          <motion.div
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            variants={{
+              hidden: {},
+              show: {
+                transition: {
+                  staggerChildren: 0.1,
+                },
+              },
+            }}
+            className="grid gap-4 md:grid-cols-5"
+          >
             {sections.map((item) => (
-              <a
+              <motion.a
                 key={item.id}
                 href={`#${item.id}`}
-                className="group rounded-2xl border border-slate-200 bg-white p-5 text-center shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-lg"
+                variants={{
+                  hidden: {
+                    opacity: 0,
+                    y: 40,
+                  },
+                  show: {
+                    opacity: 1,
+                    y: 0,
+                  },
+                }}
+                whileHover={{
+                  y: -8,
+                  scale: 1.03,
+                }}
+                className="group rounded-2xl border border-slate-200 bg-white p-5 text-center shadow-sm transition-all duration-300 hover:border-blue-200 hover:shadow-lg"
               >
                 <p className="font-semibold text-slate-700 group-hover:text-blue-600">
                   {item.title}
                 </p>
-              </a>
+              </motion.a>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -107,10 +157,22 @@ export default function PrivacyPolicyPage() {
       <section className="pb-24">
         <div className="container">
           <div className="mx-auto max-w-5xl rounded-[36px] border border-slate-200 bg-white p-8 shadow-sm md:p-14">
-            {sections.map((section) => (
-              <div
+            {sections.map((section, index) => (
+              <motion.div
                 key={section.id}
                 id={section.id}
+                initial={{
+                  opacity: 0,
+                  x: index % 2 === 0 ? -50 : 50,
+                }}
+                whileInView={{
+                  opacity: 1,
+                  x: 0,
+                }}
+                viewport={{ once: true }}
+                transition={{
+                  duration: 0.7,
+                }}
                 className="mb-14 scroll-mt-32"
               >
                 <h2 className="mb-6 text-3xl font-bold text-slate-900">
@@ -124,10 +186,36 @@ export default function PrivacyPolicyPage() {
                 )}
 
                 {section.points && (
-                  <div className="space-y-5">
+                  <motion.div
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: true }}
+                    variants={{
+                      hidden: {},
+                      show: {
+                        transition: {
+                          staggerChildren: 0.08,
+                        },
+                      },
+                    }}
+                    className="space-y-5"
+                  >
                     {section.points.map((point) => (
-                      <div
+                      <motion.div
                         key={point}
+                        variants={{
+                          hidden: {
+                            opacity: 0,
+                            x: -25,
+                          },
+                          show: {
+                            opacity: 1,
+                            x: 0,
+                          },
+                        }}
+                        whileHover={{
+                          x: 6,
+                        }}
                         className="flex items-start gap-4"
                       >
                         <CheckCircle2
@@ -138,11 +226,11 @@ export default function PrivacyPolicyPage() {
                         <p className="text-lg leading-8 text-slate-600">
                           {point}
                         </p>
-                      </div>
+                      </motion.div>
                     ))}
-                  </div>
+                  </motion.div>
                 )}
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -151,7 +239,21 @@ export default function PrivacyPolicyPage() {
       {/* Contact Card */}
       <section className="pb-24">
         <div className="container">
-          <div className="overflow-hidden rounded-[36px] bg-gradient-to-r from-blue-600 via-indigo-600 to-violet-600 p-10 text-white shadow-2xl md:p-14">
+          <motion.div
+            initial={{
+              opacity: 0,
+              scale: 0.96,
+            }}
+            whileInView={{
+              opacity: 1,
+              scale: 1,
+            }}
+            viewport={{ once: true }}
+            transition={{
+              duration: 0.8,
+            }}
+            className="overflow-hidden rounded-[36px] bg-gradient-to-r from-blue-600 via-indigo-600 to-violet-600 p-10 text-white shadow-2xl md:p-14"
+          >
             <div className="flex flex-col gap-10 lg:flex-row lg:items-center lg:justify-between">
               <div>
                 <div className="mb-4 flex items-center gap-3">
@@ -169,24 +271,32 @@ export default function PrivacyPolicyPage() {
               </div>
 
               <div className="space-y-4">
-                <a
+                <motion.a
                   href="mailto:info@visezy.com"
+                  whileHover={{
+                    x: 8,
+                    scale: 1.03,
+                  }}
                   className="flex items-center gap-3 rounded-2xl bg-white/10 px-5 py-4 backdrop-blur-sm transition-all hover:bg-white/20"
                 >
                   <Mail size={20} />
                   info@visezy.com
-                </a>
+                </motion.a>
 
-                <a
+                <motion.a
                   href="tel:+917453852331"
+                  whileHover={{
+                    x: 8,
+                    scale: 1.03,
+                  }}
                   className="flex items-center gap-3 rounded-2xl bg-white/10 px-5 py-4 backdrop-blur-sm transition-all hover:bg-white/20"
                 >
                   <Database size={20} />
                   +91 7453 852 331
-                </a>
+                </motion.a>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 

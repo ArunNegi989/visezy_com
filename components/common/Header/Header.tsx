@@ -44,7 +44,7 @@ export default function Header() {
                 </h2>
 
                 <p className="text-xs text-slate-500">
-                  Staffing Solutions
+                  Solutions
                 </p>
               </div>
             </div>

@@ -52,29 +52,9 @@ export default function AdminNavbar() {
 
             </div>
 
-            <div className={styles.center}>
-
-                <div className={styles.search}>
-
-                    <Search size={18} />
-
-                    <input
-
-                        placeholder="Search..."
-
-                    />
-
-                </div>
-
-            </div>
-
+          
             <div className={styles.right}>
 
-                <button className={styles.iconBtn}>
-
-                    <Bell size={20} />
-
-                </button>
 
                 <ProfileDropdown />
 

@@ -9,9 +9,6 @@ import {
   Images,
   Mail,
   BriefcaseBusiness,
-  Settings,
-  LogOut,
-  Globe,
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
@@ -44,11 +41,6 @@ const menu = [
     title: "Career Applications",
     href: "/admin/careers",
     icon: BriefcaseBusiness,
-  },
-  {
-    title: "Settings",
-    href: "/admin/settings",
-    icon: Settings,
   },
 ];
 
@@ -110,30 +102,30 @@ export default function AdminSidebar() {
       {/* Menu */}
 
       <nav className={styles.menu}>
-  <div className={styles.menuTop}>
-    {menu.map((item) => {
-      const Icon = item.icon;
+        <div className={styles.menuTop}>
+          {menu.map((item) => {
+            const Icon = item.icon;
 
-      const active =
-        item.href === "/admin"
-          ? pathname === "/admin"
-          : pathname.startsWith(item.href);
+            const active =
+              item.href === "/admin"
+                ? pathname === "/admin"
+                : pathname.startsWith(item.href);
 
-      return (
-        <Link
-          key={item.href}
-          href={item.href}
-          onClick={closeMobileSidebar}
-          className={`${styles.item} ${active ? styles.active : ""}`}
-        >
-          <Icon size={20} />
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={closeMobileSidebar}
+                className={`${styles.item} ${active ? styles.active : ""}`}
+              >
+                <Icon size={20} />
 
-          {!collapsed && <span>{item.title}</span>}
-        </Link>
-      );
-    })}
-  </div>
-</nav>
+                {!collapsed && <span>{item.title}</span>}
+              </Link>
+            );
+          })}
+        </div>
+      </nav>
     </aside>
   );
 }

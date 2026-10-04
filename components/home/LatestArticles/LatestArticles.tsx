@@ -1,36 +1,95 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { motion, type Variants } from "framer-motion";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-async function getLatestBlogs() {
-  try {
-    const res = await fetch(`${API_URL}/api/blogs?limit=3`, {
-      next: {
-        revalidate: 60,
-      },
-    });
-
-    if (!res.ok) {
-      return [];
-    }
-
-    const data = await res.json();
-
-    return data.blogs || [];
-  } catch (error) {
-    console.error(error);
-    return [];
-  }
+interface Blog {
+  _id: string;
+  slug: string;
+  title: string;
+  category: string;
+  thumbnail: string;
+  shortDescription: string;
 }
 
-export default async function LatestArticles() {
-  const articles = await getLatestBlogs();
+const container = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.15,
+    },
+  },
+};
+
+const fadeUp = {
+  hidden: {
+    opacity: 0,
+    y: 50,
+  },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.8,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+} satisfies Variants;
+
+export default function LatestArticles() {
+  const [articles, setArticles] = useState<Blog[]>([]);
+
+  useEffect(() => {
+    async function loadBlogs() {
+      try {
+        const res = await fetch(`${API_URL}/api/blogs?limit=3`);
+
+        if (!res.ok) return;
+
+        const data = await res.json();
+
+        setArticles(data.blogs || []);
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    loadBlogs();
+  }, []);
 
   return (
-    <section className="py-24">
-      <div className="container">
-        <div className="mb-16 flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+    <section className="relative overflow-hidden py-24">
+      {/* Animated Background */}
+      <motion.div
+        className="absolute right-0 top-0 -z-10 h-[450px] w-[450px] rounded-full bg-blue-100/40 blur-3xl"
+        animate={{
+          scale: [1, 1.15, 1],
+          opacity: [0.35, 0.75, 0.35],
+        }}
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
+
+      <motion.div
+        variants={container}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.2 }}
+        className="container"
+      >
+        {/* Heading */}
+        <motion.div
+          variants={fadeUp}
+          className="mb-16 flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between"
+        >
           <div>
             <span className="mb-3 inline-block rounded-full bg-blue-50 px-4 py-2 text-sm font-medium text-blue-600">
               Insights & Resources
@@ -43,25 +102,49 @@ export default async function LatestArticles() {
 
           <Link
             href="/blogs"
-            className="inline-flex items-center gap-2 self-start rounded-2xl bg-blue-600 px-6 py-3 font-semibold text-white transition-all duration-300 hover:-translate-y-1 hover:bg-blue-700 hover:shadow-lg"
+            className="group inline-flex items-center gap-2 self-start rounded-2xl bg-blue-600 px-6 py-3 font-semibold text-white transition-all duration-300 hover:-translate-y-1 hover:bg-blue-700 hover:shadow-xl"
           >
             View All
-            <ArrowRight size={18} />
-          </Link>
-        </div>
 
-        <div className="grid gap-8 lg:grid-cols-3">
-          {articles.map((article: any) => (
-            <article
+            <ArrowRight
+              size={18}
+              className="transition-transform duration-300 group-hover:translate-x-1"
+            />
+          </Link>
+        </motion.div>
+
+        {/* Cards */}
+        <motion.div
+          variants={container}
+          className="grid gap-8 lg:grid-cols-3"
+        >
+          {articles.map((article) => (
+            <motion.article
               key={article._id}
-              className="group overflow-hidden rounded-[28px] border border-slate-200 bg-white shadow-sm transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl"
+              variants={fadeUp}
+              whileHover={{
+                y: -12,
+                scale: 1.02,
+              }}
+              transition={{
+                type: "spring",
+                stiffness: 260,
+                damping: 18,
+              }}
+              className="group overflow-hidden rounded-[28px] border border-slate-200 bg-white shadow-sm"
             >
               <Link href={`/blogs/${article.slug}`}>
                 <div className="relative h-64 overflow-hidden">
-                  <img
+                  <motion.img
                     src={article.thumbnail}
                     alt={article.title}
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    whileHover={{
+                      scale: 1.08,
+                    }}
+                    transition={{
+                      duration: 0.6,
+                    }}
+                    className="h-full w-full object-cover"
                   />
 
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900/50 via-slate-900/10 to-transparent" />
@@ -82,6 +165,7 @@ export default async function LatestArticles() {
 
                   <div className="mt-6 inline-flex items-center gap-2 font-semibold text-blue-600">
                     Read Article
+
                     <ArrowRight
                       size={18}
                       className="transition-transform duration-300 group-hover:translate-x-1"
@@ -89,10 +173,10 @@ export default async function LatestArticles() {
                   </div>
                 </div>
               </Link>
-            </article>
+            </motion.article>
           ))}
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 }

@@ -1,5 +1,7 @@
 "use client";
 
+import { Suspense } from "react";
+
 import {
     FormEvent,
     useEffect,
@@ -28,8 +30,8 @@ import {
     verifyOTP,
 } from "@/services/auth.service";
 
-export default function VerifyOTPPage() {
-
+function VerifyOTPContent() {
+    
     const router = useRouter();
 
     const searchParams =
@@ -433,5 +435,19 @@ export default function VerifyOTPPage() {
 
             </div>
         </div>
+    );
+}
+export default function VerifyOTPPage() {
+
+    return (
+        <Suspense
+            fallback={
+                <div className="flex min-h-screen items-center justify-center">
+                    Loading...
+                </div>
+            }
+        >
+            <VerifyOTPContent />
+        </Suspense>
     );
 }
