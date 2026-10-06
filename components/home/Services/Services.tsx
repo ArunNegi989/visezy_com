@@ -2,45 +2,45 @@
 
 import { motion, type Variants } from "framer-motion";
 import {
-  BriefcaseBusiness,
-  Users,
-  UserRoundCheck,
-  Landmark,
-  GraduationCap,
-  FileText,
+  Code2,
+  Smartphone,
+  ShoppingCart,
+  Globe2,
+  Cloud,
+  Settings2,
   ArrowRight,
 } from "lucide-react";
 
 const services = [
   {
-    title: "Executive Search",
-    icon: BriefcaseBusiness,
-    desc: "Identify and attract top-tier leadership talent.",
+    title: "Custom Software Development",
+    icon: Code2,
+    desc: "Build scalable and secure software solutions tailored to your business requirements and workflows.",
   },
   {
-    title: "Temporary Staffing",
-    icon: Users,
-    desc: "Flexible workforce solutions for short-term needs.",
+    title: "Web Development",
+    icon: Globe2,
+    desc: "Create modern, responsive, high-performance websites and web applications that deliver exceptional user experiences.",
   },
   {
-    title: "Direct Hire",
-    icon: UserRoundCheck,
-    desc: "Build stronger teams with permanent placements.",
+    title: "Mobile App Development",
+    icon: Smartphone,
+    desc: "Develop powerful Android and iOS applications with intuitive interfaces and reliable backend systems.",
   },
   {
-    title: "Contract Staffing",
-    icon: FileText,
-    desc: "Scale quickly with project-based specialists.",
+    title: "E-commerce Solutions",
+    icon: ShoppingCart,
+    desc: "Launch scalable e-commerce platforms with seamless shopping experiences, integrations, payments, and management tools.",
   },
   {
-    title: "Payrolling",
-    icon: Landmark,
-    desc: "Simplify workforce and payroll management.",
+    title: "Cloud & API Solutions",
+    icon: Cloud,
+    desc: "Build secure cloud infrastructure, APIs, integrations, and scalable systems for modern digital products.",
   },
   {
-    title: "Training",
-    icon: GraduationCap,
-    desc: "Upskill teams with targeted training programs.",
+    title: "Maintenance & Support",
+    icon: Settings2,
+    desc: "Keep your digital products secure, optimized, updated, and running smoothly with ongoing technical support.",
   },
 ];
 
@@ -74,9 +74,7 @@ const item = {
 export default function Services() {
   return (
     <section className="relative overflow-hidden bg-slate-50 py-24">
-
       {/* Background Glow */}
-
       <motion.div
         className="absolute left-1/2 top-0 -z-10 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-blue-100/40 blur-3xl"
         animate={{
@@ -91,12 +89,11 @@ export default function Services() {
       />
 
       <div className="container">
-
         <motion.div
           initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: .7 }}
+          transition={{ duration: 0.7 }}
           className="mx-auto mb-16 max-w-3xl text-center"
         >
           <span className="font-semibold text-blue-600">
@@ -104,11 +101,13 @@ export default function Services() {
           </span>
 
           <h2 className="mt-4 text-4xl font-bold text-slate-900 md:text-5xl">
-            Inspiring Staffing Solutions
+            Technology Solutions Built for Your Business
           </h2>
 
           <p className="mt-6 text-lg text-slate-600">
-            AI-powered recruitment services designed for modern businesses.
+            From custom software and web applications to mobile apps and
+            e-commerce platforms, we build digital solutions designed to
+            solve real business challenges.
           </p>
         </motion.div>
 
@@ -116,7 +115,7 @@ export default function Services() {
           variants={container}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, amount: .2 }}
+          viewport={{ once: true, amount: 0.2 }}
           className="grid gap-8 md:grid-cols-2 xl:grid-cols-3"
         >
           {services.map((service) => {
@@ -139,9 +138,7 @@ export default function Services() {
                 }}
                 className="group relative overflow-hidden rounded-[28px] border border-slate-200 bg-white p-8 shadow-sm"
               >
-
                 {/* Shine Effect */}
-
                 <div className="absolute -left-40 top-0 h-full w-24 -skew-x-12 bg-white/40 blur-md transition-all duration-700 group-hover:left-[120%]" />
 
                 <motion.div
@@ -170,21 +167,17 @@ export default function Services() {
                 </p>
 
                 <button className="mt-8 flex items-center gap-2 font-semibold text-blue-600">
-
                   Learn More
 
                   <ArrowRight
                     size={18}
                     className="transition-transform duration-300 group-hover:translate-x-2"
                   />
-
                 </button>
-
               </motion.div>
             );
           })}
         </motion.div>
-
       </div>
     </section>
   );

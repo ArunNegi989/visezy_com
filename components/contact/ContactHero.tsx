@@ -1,7 +1,11 @@
 "use client";
 
 import { motion, type Variants } from "framer-motion";
-import { Phone, Mail, MapPin } from "lucide-react";
+import {
+  Phone,
+  Mail,
+  MapPin,
+} from "lucide-react";
 
 const container = {
   hidden: {},
@@ -84,7 +88,10 @@ export default function ContactHero() {
         variants={container}
         initial="hidden"
         whileInView="show"
-        viewport={{ once: true, amount: 0.25 }}
+        viewport={{
+          once: true,
+          amount: 0.25,
+        }}
         className="container relative"
       >
         {/* Hero Content */}
@@ -98,7 +105,7 @@ export default function ContactHero() {
             }}
             className="inline-flex rounded-full border border-blue-100 bg-blue-50 px-5 py-2 text-sm font-semibold text-blue-600 shadow-sm"
           >
-            Contact Us
+            Let's Connect
           </motion.span>
 
           <motion.h1
@@ -108,7 +115,7 @@ export default function ContactHero() {
             Let's Build Your
 
             <span className="block bg-gradient-to-r from-blue-600 via-indigo-600 to-violet-600 bg-clip-text text-transparent">
-              Dream Team
+              Digital Future
             </span>
           </motion.h1>
 
@@ -116,9 +123,9 @@ export default function ContactHero() {
             variants={fadeUp}
             className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-slate-600"
           >
-            Connect with our recruitment specialists and discover how
-            AI-powered hiring can accelerate your business growth and
-            help you build exceptional teams.
+            Have a software idea, website requirement, mobile app concept,
+            or e-commerce project? Connect with our team and let's turn your
+            vision into a scalable digital solution.
           </motion.p>
         </motion.div>
 
@@ -145,13 +152,10 @@ export default function ContactHero() {
                 }}
                 className="group relative overflow-hidden rounded-[30px] border border-slate-200 bg-white p-8 shadow-sm transition-all duration-500 hover:border-blue-200 hover:shadow-[0_25px_60px_rgba(37,99,235,.15)]"
               >
-                {/* Hover Glow */}
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-500/[0.04] to-violet-500/[0.04] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
-                {/* Top Gradient */}
                 <div className="absolute left-0 top-0 h-1 w-full origin-left scale-x-0 bg-gradient-to-r from-blue-600 via-indigo-600 to-violet-600 transition-transform duration-500 group-hover:scale-x-100" />
 
-                {/* Icon */}
                 <motion.div
                   whileHover={{
                     rotate: 8,
@@ -159,20 +163,6 @@ export default function ContactHero() {
                   }}
                   className="relative mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-50 to-violet-50 text-blue-600"
                 >
-                  <motion.div
-                    animate={{
-                      boxShadow: [
-                        "0 0 0 0 rgba(37,99,235,.35)",
-                        "0 0 0 14px rgba(37,99,235,0)",
-                      ],
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                    }}
-                    className="absolute inset-0 rounded-2xl"
-                  />
-
                   <Icon size={28} />
                 </motion.div>
 
@@ -180,11 +170,10 @@ export default function ContactHero() {
                   {card.title}
                 </h3>
 
-                <p className="relative mt-3 text-slate-600 break-words">
+                <p className="relative mt-3 break-words text-slate-600">
                   {card.value}
                 </p>
 
-                {/* Bottom Line */}
                 <motion.div
                   initial={{
                     width: 0,

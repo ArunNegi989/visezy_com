@@ -28,11 +28,9 @@ html {
 }
 
 body {
-  background: radial-gradient(
-      circle at top right,
+  background: radial-gradient(circle at top right,
       rgba(37, 99, 235, 0.08),
-      transparent 30%
-    ),
+      transparent 30%),
     var(--background);
 
   color: var(--foreground);
@@ -40,10 +38,22 @@ body {
   overflow-x: hidden;
 }
 
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
+
+button {
+  cursor: pointer;
+}
+
+input,
+textarea,
+select {
+  font: inherit;
+}
 
 .container {
   width: 100%;

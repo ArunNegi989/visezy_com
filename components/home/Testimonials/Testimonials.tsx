@@ -59,16 +59,13 @@ export default function Testimonials() {
       {/* Animated Background */}
       <motion.div
         className="absolute right-0 top-0 -z-10 h-[450px] w-[450px] rounded-full bg-violet-100/40 blur-3xl"
-        animate={{
-          scale: [1, 1.15, 1],
-          opacity: [0.35, 0.75, 0.35],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
+
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
       />
+
 
       <motion.div
         variants={container}
@@ -105,15 +102,8 @@ export default function Testimonials() {
             <motion.div
               key={item.name}
               variants={fadeUp}
-              whileHover={{
-                y: -12,
-                scale: 1.03,
-              }}
-              transition={{
-                type: "spring",
-                stiffness: 260,
-                damping: 18,
-              }}
+              whileHover={{ y: -8 }}
+              transition={{ duration: 0.25 }}
               className="group rounded-[28px] border border-slate-200 bg-white p-8 shadow-sm"
             >
               {/* Stars */}

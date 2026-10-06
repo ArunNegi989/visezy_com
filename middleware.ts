@@ -3,7 +3,7 @@ import type { NextRequest } from "next/server";
 
 export function middleware(request: NextRequest) {
 
-    const token = request.cookies.get("token");
+    const token = request.cookies.get("token")?.value;
 
     const path = request.nextUrl.pathname;
 
@@ -32,7 +32,8 @@ export function middleware(request: NextRequest) {
         (
             path === "/admin/login" ||
             path === "/admin/signup" ||
-            path === "/admin/verify-otp"
+            path === "/admin/verify-otp" ||
+            path.startsWith("/admin/reset-password")
         )
     ) {
         return NextResponse.redirect(

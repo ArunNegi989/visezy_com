@@ -44,7 +44,7 @@ export default function Header() {
                 </h2>
 
                 <p className="text-xs text-slate-500">
-                  Solutions
+                 Technology Solutions
                 </p>
               </div>
             </div>

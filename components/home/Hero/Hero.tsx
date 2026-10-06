@@ -1,9 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { motion, type Variants } from "framer-motion";
-import CountUp from "react-countup";
 import {
   ArrowRight,
   Sparkles,
@@ -34,20 +32,25 @@ export default function Hero() {
 
   useEffect(() => {
     const load = async () => {
-      const data = await getSliders();
+      try {
+        const data = await getSliders();
 
-      if (data.success) {
-        setSliders(data.sliders);
+        if (data.success) {
+          setSliders(data.sliders);
+        }
+      } catch (error) {
+        console.error("Failed to load sliders:", error);
       }
     };
 
     load();
   }, []);
 
-  const imageUrl =
-    slider?.image?.startsWith("http")
+  const imageUrl = slider?.image
+    ? slider.image.startsWith("http")
       ? slider.image
-      : `${process.env.NEXT_PUBLIC_API_URL}/${slider?.image}`;
+      : `${process.env.NEXT_PUBLIC_API_URL}/${slider.image}`
+    : "/hero.jpg";
 
   useEffect(() => {
     if (!sliders.length) return;
@@ -127,7 +130,7 @@ export default function Hero() {
       variants={containerVariants}
       initial="hidden"
       animate="visible"
-      className="relative overflow-hidden bg-white h-[1440px] lg:h-[900px]  pt-12 pb-24 lg:pb-32"
+      className="relative h-[1440px] overflow-hidden bg-white pt-12 pb-24 lg:h-[900px] lg:pb-32"
     >
       {/* Background Effects */}
 
@@ -149,10 +152,10 @@ export default function Hero() {
 
       <div className="container relative mx-auto">
         <div className="grid items-center gap-16 lg:grid-cols-[1.05fr_0.95fr]">
-
           {/* LEFT CONTENT */}
 
           <motion.div variants={fadeLeft}>
+            {/* Badge */}
 
             <motion.div
               variants={fadeUp}
@@ -166,14 +169,17 @@ export default function Hero() {
               className="mb-6 inline-flex items-center gap-2 rounded-full border border-blue-100 bg-blue-50 px-5 py-2 text-sm font-medium text-blue-700 shadow-sm"
             >
               <Sparkles size={16} />
-              AI-Powered Recruitment Platform
+
+              Custom Software Development
             </motion.div>
+
+            {/* Heading */}
 
             <motion.h1
               variants={fadeUp}
               className="max-w-3xl text-5xl font-extrabold leading-[1.05] tracking-tight text-slate-900 md:text-6xl xl:text-7xl"
             >
-              {slider?.title}
+              {slider?.title || "Build Your Digital Future"}
 
               <motion.span
                 animate={{
@@ -190,17 +196,18 @@ export default function Hero() {
                 }}
                 className="mt-2 block bg-gradient-to-r from-blue-600 via-violet-600 to-purple-600 bg-[length:200%_200%] bg-clip-text text-transparent"
               >
-                Simple, Fast
+                {slider?.subtitle || "Simple, Scalable"}
               </motion.span>
-
-              {slider?.subtitle}
             </motion.h1>
+
+            {/* Description */}
 
             <motion.p
               variants={fadeUp}
               className="mt-8 max-w-2xl text-lg leading-8 text-slate-600"
             >
-              {slider?.description}
+              {slider?.description ||
+                "We build custom software, websites, mobile applications, e-commerce platforms, and scalable digital solutions designed around your business goals."}
             </motion.p>
 
             {/* Feature Pills */}
@@ -210,8 +217,8 @@ export default function Hero() {
               className="mt-8 flex flex-wrap gap-4"
             >
               {[
-                "Smart Screening",
-                "AI Matching",
+                "Custom Software",
+                "Web & Mobile Apps",
                 "24/7 Support",
               ].map((item) => (
                 <motion.div
@@ -237,6 +244,7 @@ export default function Hero() {
                 </motion.div>
               ))}
             </motion.div>
+
             {/* CTA */}
 
             <motion.div
@@ -248,13 +256,19 @@ export default function Hero() {
                   y: -4,
                   scale: 1.03,
                 }}
-                whileTap={{ scale: 0.97 }}
+                whileTap={{
+                  scale: 0.97,
+                }}
               >
                 <Link
-                  href={slider?.primaryButtonLink || "/contact"}
+                  href={
+                    slider?.primaryButtonLink ||
+                    "/contact-us"
+                  }
                   className="group inline-flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-blue-600 to-violet-600 px-8 py-4 font-semibold text-white shadow-xl transition-all duration-300 hover:shadow-[0_20px_40px_rgba(79,70,229,0.35)]"
                 >
-                  {slider?.primaryButtonText}
+                  {slider?.primaryButtonText ||
+                    "Start Your Project"}
 
                   <ArrowRight
                     size={18}
@@ -268,18 +282,24 @@ export default function Hero() {
                   y: -4,
                   scale: 1.03,
                 }}
-                whileTap={{ scale: 0.97 }}
+                whileTap={{
+                  scale: 0.97,
+                }}
               >
                 <Link
-                  href={slider?.secondaryButtonLink || "/employees"}
+                  href={
+                    slider?.secondaryButtonLink ||
+                    "/services"
+                  }
                   className="inline-flex items-center justify-center rounded-2xl border border-slate-200 bg-white px-8 py-4 font-semibold text-slate-700 shadow-sm transition-all duration-300 hover:border-blue-200 hover:bg-blue-50 hover:shadow-lg"
                 >
-                  {slider?.secondaryButtonText}
+                  {slider?.secondaryButtonText ||
+                    "Explore Services"}
                 </Link>
               </motion.div>
             </motion.div>
 
-            {/* Stats */}
+            {/* Stats / Value Cards */}
 
             <motion.div
               variants={fadeUp}
@@ -290,21 +310,18 @@ export default function Hero() {
                   y: -10,
                   scale: 1.04,
                 }}
-                transition={{ type: "spring", stiffness: 280 }}
-              className="rounded-2xl border border-slate-200 bg-white p-3 sm:p-5 shadow-sm min-w-0">
-                <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-900 whitespace-nowrap">
-                  <CountUp
-                    end={10000}
-                    duration={2.5}
-                    separator=","
-                    enableScrollSpy
-                    scrollSpyOnce
-                  />
-                  +
+                transition={{
+                  type: "spring",
+                  stiffness: 280,
+                }}
+                className="min-w-0 rounded-2xl border border-slate-200 bg-white p-3 shadow-sm sm:p-5"
+              >
+                <h3 className="text-lg font-bold text-slate-900 sm:text-2xl lg:text-3xl">
+                  Custom
                 </h3>
 
-             <p className="mt-1 text-xs sm:text-sm text-slate-500 leading-tight">
-                  Candidates
+                <p className="mt-1 text-xs leading-tight text-slate-500 sm:text-sm">
+                  Built For You
                 </p>
               </motion.div>
 
@@ -313,21 +330,18 @@ export default function Hero() {
                   y: -10,
                   scale: 1.04,
                 }}
-                transition={{ type: "spring", stiffness: 280 }}
-                className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm"
+                transition={{
+                  type: "spring",
+                  stiffness: 280,
+                }}
+                className="min-w-0 rounded-2xl border border-slate-200 bg-white p-3 shadow-sm sm:p-5"
               >
-                <h3 className="text-3xl font-bold text-slate-900">
-                  <CountUp
-                    end={500}
-                    duration={2.2}
-                    enableScrollSpy
-                    scrollSpyOnce
-                  />
-                  +
+                <h3 className="text-lg font-bold text-slate-900 sm:text-2xl lg:text-3xl">
+                  Scalable
                 </h3>
 
-                <p className="mt-1 text-sm text-slate-500">
-                  Companies
+                <p className="mt-1 text-xs leading-tight text-slate-500 sm:text-sm">
+                  Ready To Grow
                 </p>
               </motion.div>
 
@@ -336,25 +350,21 @@ export default function Hero() {
                   y: -10,
                   scale: 1.04,
                 }}
-                transition={{ type: "spring", stiffness: 280 }}
-                className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm"
+                transition={{
+                  type: "spring",
+                  stiffness: 280,
+                }}
+                className="min-w-0 rounded-2xl border border-slate-200 bg-white p-3 shadow-sm sm:p-5"
               >
-                <h3 className="text-3xl font-bold text-slate-900">
-                  <CountUp
-                    end={24}
-                    duration={2}
-                    enableScrollSpy
-                    scrollSpyOnce
-                  />
-                  h
+                <h3 className="text-lg font-bold text-slate-900 sm:text-2xl lg:text-3xl">
+                  End-to-End
                 </h3>
 
-                <p className="mt-1 text-sm text-slate-500">
-                  Average Hiring
+                <p className="mt-1 text-xs leading-tight text-slate-500 sm:text-sm">
+                  Digital Solutions
                 </p>
               </motion.div>
             </motion.div>
-
           </motion.div>
 
           {/* RIGHT VISUAL */}
@@ -385,7 +395,7 @@ export default function Hero() {
             >
               <div className="overflow-hidden rounded-[34px]">
                 <motion.img
-                  key={slider?._id}
+                  key={slider?._id || "default"}
                   initial={{
                     scale: 1.15,
                     opacity: 0,
@@ -397,15 +407,16 @@ export default function Hero() {
                   transition={{
                     duration: 0.9,
                   }}
-                  src={imageUrl || "/hero.jpg"}
-                  alt={slider?.title || "Hero"}
-                 className="h-[300px] sm:h-[420px] lg:h-[580px] w-full object-cover lg:object-cover object-contain bg-white"
+                  src={imageUrl}
+                  alt={
+                    slider?.title ||
+                    "VISEZY Digital Solutions"
+                  }
+                  className="h-[300px] w-full bg-white object-contain sm:h-[420px] lg:h-[580px] lg:object-cover"
                 />
               </div>
             </motion.div>
-
           </motion.div>
-
         </div>
       </div>
     </motion.section>

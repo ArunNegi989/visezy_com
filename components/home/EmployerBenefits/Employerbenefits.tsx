@@ -1,35 +1,37 @@
 "use client";
 
-import {
-  motion,
-  AnimatePresence,
-} from "framer-motion";
-
-import CountUp from "react-countup";
+import { motion, AnimatePresence } from "framer-motion";
+import dynamic from "next/dynamic";
 import { CheckCircle2 } from "lucide-react";
 import { useState } from "react";
 
-const employerBenefits = [
-  "Access a diverse talent pool",
-  "Streamline your hiring process",
-  "Make informed hiring decisions",
-  "Reduce recruitment costs",
-  "Focus on business growth",
+const CountUp = dynamic(() => import("react-countup"), {
+  ssr: false,
+});
+
+const businessBenefits = [
+  "Build scalable and reliable digital solutions",
+  "Streamline business processes with automation",
+  "Improve customer experience across platforms",
+  "Reduce operational costs with smart technology",
+  "Accelerate digital growth with modern solutions",
 ];
 
-const employeeBenefits = [
-  "Discover relevant job opportunities",
-  "Get career guidance",
-  "Build professional networks",
-  "Access premium employers",
-  "Accelerate career growth",
+const developmentBenefits = [
+  "Modern web and mobile application development",
+  "Scalable architecture for growing businesses",
+  "Seamless API and third-party integrations",
+  "Secure and performance-focused development",
+  "Continuous improvements and technical support",
 ];
 
 export default function EmployerBenefits() {
-  const [active, setActive] = useState("employers");
+  const [active, setActive] = useState("business");
 
   const items =
-    active === "employers" ? employerBenefits : employeeBenefits;
+    active === "business"
+      ? businessBenefits
+      : developmentBenefits;
 
   return (
     <section className="py-24">
@@ -47,7 +49,7 @@ export default function EmployerBenefits() {
                 className="rounded-3xl bg-white p-6 shadow-lg"
               >
                 <p className="text-sm text-slate-500">
-                  Job Applicants
+                  Digital Solutions
                 </p>
 
                 <h3 className="mt-2 text-4xl font-bold">
@@ -66,7 +68,7 @@ export default function EmployerBenefits() {
                 className="rounded-3xl bg-white p-6 shadow-lg"
               >
                 <p className="text-sm text-slate-500">
-                  Match Accuracy
+                  Client Satisfaction
                 </p>
 
                 <h3 className="mt-2 text-4xl font-bold">
@@ -83,7 +85,7 @@ export default function EmployerBenefits() {
               <div className="col-span-2 rounded-3xl bg-white p-6 shadow-lg">
                 <div className="mb-4 flex justify-between">
                   <span className="text-sm font-medium">
-                    Recruitment Efficiency
+                    Project Delivery Efficiency
                   </span>
 
                   <span className="font-semibold text-blue-600">
@@ -116,28 +118,32 @@ export default function EmployerBenefits() {
           </span>
 
           <h2 className="mt-4 text-4xl font-bold text-slate-900">
-            Find the Right Talent Faster
+            Technology That Drives Your Business Forward
           </h2>
 
           <div className="mt-8 flex rounded-2xl bg-slate-100 p-2">
             <button
-              onClick={() => setActive("employers")}
-              className={`flex-1 rounded-xl px-6 py-3 font-semibold transition-all ${active === "employers"
-                ? "bg-blue-600 text-white shadow-lg"
-                : "text-slate-600"
-                }`}
+              onClick={() => setActive("business")}
+              className={`flex-1 rounded-xl px-6 py-3 font-semibold transition-all ${
+                active === "business"
+                  ? "bg-blue-600 text-white shadow-lg"
+                  : "text-slate-700"
+              }`}
+              aria-label="Show business benefits"
             >
-              For Employers
+              For Businesses
             </button>
 
             <button
-              onClick={() => setActive("employees")}
-              className={`flex-1 rounded-xl px-6 py-3 font-semibold transition-all ${active === "employees"
-                ? "bg-blue-600 text-white shadow-lg"
-                : "text-slate-600"
-                }`}
+              onClick={() => setActive("development")}
+              className={`flex-1 rounded-xl px-6 py-3 font-semibold transition-all ${
+                active === "development"
+                  ? "bg-blue-600 text-white shadow-lg"
+                  : "text-slate-600"
+              }`}
+              aria-label="Show development benefits"
             >
-              For Employees
+              Our Approach
             </button>
           </div>
 
@@ -157,46 +163,21 @@ export default function EmployerBenefits() {
                 y: -20,
               }}
               transition={{
-                duration: .4,
+                duration: 0.4,
               }}
               className="mt-8 space-y-4"
             >
               {items.map((item, index) => (
-
-                <motion.div
-                  key={item}
-                  initial={{
-                    opacity: 0,
-                    x: -25,
-                  }}
-                  animate={{
-                    opacity: 1,
-                    x: 0,
-                  }}
-                  transition={{
-                    delay: index * 0.08,
-                  }}
-                  className="flex gap-3"
+                <div
+                  key={`${active}-${index}`}
+                  className="group flex gap-3"
                 >
-
-                  <motion.div
-                    animate={{
-                      scale: [1, 1.15, 1],
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                    }}
-                  >
-                    <CheckCircle2 className="mt-1 text-emerald-500" />
-                  </motion.div>
+                  <CheckCircle2 className="mt-1 text-emerald-500 transition-transform duration-300 group-hover:scale-110" />
 
                   <span className="text-slate-600">
                     {item}
                   </span>
-
-                </motion.div>
-
+                </div>
               ))}
             </motion.div>
           </AnimatePresence>
