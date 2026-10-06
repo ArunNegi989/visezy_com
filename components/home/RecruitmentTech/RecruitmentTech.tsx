@@ -2,13 +2,17 @@
 
 import { motion, type Variants } from "framer-motion";
 import { CheckCircle2 } from "lucide-react";
-import CountUp from "react-countup";
+import dynamic from "next/dynamic";
+
+const CountUp = dynamic(() => import("react-countup"), {
+  ssr: false,
+});
 
 const features = [
-  "Efficient AI matching",
-  "Expanded talent network",
-  "Automated screening",
-  "Enhanced candidate experience",
+  "Modern and scalable technology",
+  "Custom solutions for business requirements",
+  "Secure APIs and system integrations",
+  "High-performance web and mobile applications",
 ];
 
 const container = {
@@ -56,19 +60,13 @@ const fadeRight = {
 export default function RecruitmentTech() {
   return (
     <section className="relative overflow-hidden bg-slate-50 py-24">
-
       {/* Animated Background Glow */}
       <motion.div
         className="absolute left-1/2 top-0 -z-10 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-blue-100/40 blur-3xl"
-        animate={{
-          scale: [1, 1.12, 1],
-          opacity: [0.45, 0.8, 0.45],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
       />
 
       <motion.div
@@ -81,16 +79,17 @@ export default function RecruitmentTech() {
         {/* LEFT CONTENT */}
         <motion.div variants={fadeLeft}>
           <span className="font-semibold text-blue-600">
-            RECRUITMENT TECHNOLOGY
+            TECHNOLOGY SOLUTIONS
           </span>
 
           <h2 className="mt-4 text-4xl font-bold text-slate-900">
-            Solving Recruitment Using Technology
+            Solving Business Challenges Through Technology
           </h2>
 
           <p className="mt-6 text-lg leading-8 text-slate-600">
-            We leverage cutting-edge technology to streamline the recruitment
-            process for both businesses and candidates.
+            We combine modern technologies, thoughtful design, and scalable
+            architecture to build digital solutions that help businesses grow,
+            automate operations, and deliver better customer experiences.
           </p>
 
           <div className="mt-8 space-y-5">
@@ -111,18 +110,7 @@ export default function RecruitmentTech() {
                 }}
                 className="flex items-center gap-3"
               >
-                <motion.div
-                  animate={{
-                    scale: [1, 1.12, 1],
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    delay: index * 0.2,
-                  }}
-                >
-                  <CheckCircle2 className="text-emerald-500" />
-                </motion.div>
+                <CheckCircle2 className="text-emerald-500" />
 
                 <span className="text-slate-600">
                   {feature}
@@ -135,16 +123,6 @@ export default function RecruitmentTech() {
         {/* RIGHT CARD */}
         <motion.div
           variants={fadeRight}
-          animate={{
-            y: [0, -12, 0],
-          }}
-          transition={{
-            y: {
-              duration: 5,
-              repeat: Infinity,
-              ease: "easeInOut",
-            },
-          }}
           whileHover={{
             scale: 1.03,
             rotateX: 4,
@@ -157,7 +135,7 @@ export default function RecruitmentTech() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-slate-500">
-                    New Employees
+                    Digital Projects
                   </p>
 
                   <h3 className="mt-2 text-5xl font-bold text-slate-900">
@@ -171,9 +149,6 @@ export default function RecruitmentTech() {
                 </div>
 
                 <motion.div
-                  animate={{
-                    scale: [1, 1.08, 1],
-                  }}
                   transition={{
                     duration: 2,
                     repeat: Infinity,
@@ -188,7 +163,7 @@ export default function RecruitmentTech() {
               <div className="mt-8">
                 <div className="mb-3 flex items-center justify-between text-sm">
                   <span className="text-slate-500">
-                    Recruitment Success
+                    Project Success
                   </span>
 
                   <span className="font-semibold text-blue-600">
@@ -220,11 +195,11 @@ export default function RecruitmentTech() {
                   className="rounded-2xl border border-slate-100 bg-slate-50 p-4"
                 >
                   <p className="text-sm text-slate-500">
-                    Hiring Speed
+                    Delivery
                   </p>
 
                   <h4 className="mt-1 text-2xl font-bold">
-                    3 Days
+                    On Time
                   </h4>
                 </motion.div>
 
@@ -236,7 +211,7 @@ export default function RecruitmentTech() {
                   className="rounded-2xl border border-slate-100 bg-slate-50 p-4"
                 >
                   <p className="text-sm text-slate-500">
-                    Accuracy
+                    Quality
                   </p>
 
                   <h4 className="mt-1 text-2xl font-bold">

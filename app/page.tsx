@@ -1,13 +1,37 @@
-import CTA from "@/components/common/CTA/CTA";
-import EmployerBenefits from "@/components/home/EmployerBenefits/Employerbenefits";
-import FAQ from "@/components/home/FAQ/FAQ";
+import dynamic from "next/dynamic";
+
 import Hero from "@/components/home/Hero/Hero";
-import LatestArticles from "@/components/home/LatestArticles/LatestArticles";
 import RecruitmentTech from "@/components/home/RecruitmentTech/RecruitmentTech";
 import Services from "@/components/home/Services/Services";
-import Testimonials from "@/components/home/Testimonials/Testimonials";
 import TrustedCompanies from "@/components/home/TrustedCompanies/TrustedCompanies";
 
+import type { Metadata } from "next";
+
+
+const Testimonials = dynamic(
+  () => import("@/components/home/Testimonials/Testimonials")
+);
+
+const FAQ = dynamic(
+  () => import("@/components/home/FAQ/FAQ")
+);
+
+const LatestArticles = dynamic(
+  () => import("@/components/home/LatestArticles/LatestArticles")
+);
+
+const EmployerBenefits = dynamic(
+  () => import("@/components/home/EmployerBenefits/Employerbenefits")
+);
+
+const CTA = dynamic(
+  () => import("@/components/common/CTA/CTA")
+);
+
+export const metadata: Metadata = {
+  title: "Visezy",
+  description: "IT Consulting",
+};
 
 export default function HomePage() {
   return (

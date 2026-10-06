@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { motion, type Variants } from "framer-motion";
+import Image from "next/image";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -45,21 +46,28 @@ export default function LatestArticles() {
   const [articles, setArticles] = useState<Blog[]>([]);
 
   useEffect(() => {
+    const controller = new AbortController();
+
     async function loadBlogs() {
       try {
-        const res = await fetch(`${API_URL}/api/blogs?limit=3`);
+        const res = await fetch(
+          `${API_URL}/api/blogs?limit=3`,
+          {
+            signal: controller.signal,
+          }
+        );
 
         if (!res.ok) return;
 
         const data = await res.json();
 
         setArticles(data.blogs || []);
-      } catch (err) {
-        console.error(err);
-      }
+      } catch { }
     }
 
     loadBlogs();
+
+    return () => controller.abort();
   }, []);
 
   return (
@@ -67,15 +75,10 @@ export default function LatestArticles() {
       {/* Animated Background */}
       <motion.div
         className="absolute right-0 top-0 -z-10 h-[450px] w-[450px] rounded-full bg-blue-100/40 blur-3xl"
-        animate={{
-          scale: [1, 1.15, 1],
-          opacity: [0.35, 0.75, 0.35],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: .8 }}
       />
 
       <motion.div
@@ -135,16 +138,14 @@ export default function LatestArticles() {
             >
               <Link href={`/blogs/${article.slug}`}>
                 <div className="relative h-64 overflow-hidden">
-                  <motion.img
+                  <Image
                     src={article.thumbnail}
                     alt={article.title}
-                    whileHover={{
-                      scale: 1.08,
-                    }}
-                    transition={{
-                      duration: 0.6,
-                    }}
-                    className="h-full w-full object-cover"
+                    fill
+                    sizes="(max-width:768px)100vw,(max-width:1200px)50vw,33vw"
+                    loading="lazy"
+                    quality={80}
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
 
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900/50 via-slate-900/10 to-transparent" />

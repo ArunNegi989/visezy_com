@@ -1,8 +1,14 @@
 "use client";
 
 import SectionHeading from "@/components/shared/SectionHeading";
-import { Clock3, MapPin } from "lucide-react";
-import { motion, type Variants } from "framer-motion";
+import {
+  Clock3,
+  MapPin,
+} from "lucide-react";
+import {
+  motion,
+  type Variants,
+} from "framer-motion";
 
 const container = {
   hidden: {},
@@ -78,13 +84,16 @@ export default function OfficeLocations() {
         variants={container}
         initial="hidden"
         whileInView="show"
-        viewport={{ once: true, amount: 0.25 }}
+        viewport={{
+          once: true,
+          amount: 0.25,
+        }}
         className="container"
       >
         <SectionHeading
           badge="Office Location"
           title="Visit Our Office"
-          description="Meet our recruitment specialists and discuss your hiring goals in person."
+          description="Connect with our team to discuss your software, web, mobile, e-commerce, and digital product requirements."
         />
 
         <div className="grid gap-10 lg:grid-cols-[420px_1fr]">
@@ -102,10 +111,8 @@ export default function OfficeLocations() {
             }}
             className="group relative overflow-hidden rounded-[32px] border border-slate-200 bg-white p-8 shadow-sm transition-all duration-500 hover:border-blue-200 hover:shadow-[0_25px_60px_rgba(37,99,235,.15)]"
           >
-            {/* Hover Gradient */}
             <div className="absolute inset-0 bg-gradient-to-br from-blue-500/[0.04] to-violet-500/[0.04] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
-            {/* Top Border */}
             <div className="absolute left-0 top-0 h-1 w-full origin-left scale-x-0 bg-gradient-to-r from-blue-600 via-indigo-600 to-violet-600 transition-transform duration-500 group-hover:scale-x-100" />
 
             <motion.div
@@ -115,20 +122,6 @@ export default function OfficeLocations() {
               }}
               className="relative mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-50 to-violet-50 text-blue-600"
             >
-              <motion.div
-                animate={{
-                  boxShadow: [
-                    "0 0 0 0 rgba(37,99,235,.35)",
-                    "0 0 0 14px rgba(37,99,235,0)",
-                  ],
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                }}
-                className="absolute inset-0 rounded-2xl"
-              />
-
               <MapPin size={30} />
             </motion.div>
 

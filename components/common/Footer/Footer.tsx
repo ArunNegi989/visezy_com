@@ -19,7 +19,7 @@ export default function Footer() {
             </h3>
 
             <p className="mt-1 text-sm text-slate-500">
-              Solutions
+             Technology Solutions
             </p>
           </div>
 
@@ -179,6 +179,7 @@ export default function Footer() {
 
           <button
             type="button"
+            aria-label="Scroll to top"
             onClick={() =>
               window.scrollTo({
                 top: 0,

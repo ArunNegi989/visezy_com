@@ -2,7 +2,10 @@
 
 import Link from "next/link";
 import { motion, type Variants } from "framer-motion";
-import { ArrowRight, BriefcaseBusiness } from "lucide-react";
+import {
+  ArrowRight,
+  Code2,
+} from "lucide-react";
 
 const container: Variants = {
   hidden: {},
@@ -32,7 +35,6 @@ const fadeUp: Variants = {
 export default function EmployeeHero() {
   return (
     <section className="relative overflow-hidden pt-32 pb-24">
-      {/* Background */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(37,99,235,.12),transparent_35%)]" />
 
       <motion.div
@@ -70,7 +72,6 @@ export default function EmployeeHero() {
         className="container relative"
       >
         <div className="mx-auto max-w-4xl text-center">
-          {/* Badge */}
           <motion.span
             variants={fadeUp}
             whileHover={{
@@ -79,16 +80,15 @@ export default function EmployeeHero() {
             }}
             className="inline-flex items-center gap-2 rounded-full border border-blue-100 bg-blue-50 px-5 py-2 text-sm font-semibold text-blue-600 shadow-sm"
           >
-            <BriefcaseBusiness size={16} />
-            Career Opportunities
+            <Code2 size={16} />
+            Custom Software Development
           </motion.span>
 
-          {/* Heading */}
           <motion.h1
             variants={fadeUp}
             className="mt-6 text-5xl font-extrabold tracking-tight text-slate-900 md:text-7xl"
           >
-            Find Your
+            Build Your
 
             <motion.span
               animate={{
@@ -108,30 +108,28 @@ export default function EmployeeHero() {
               }}
               className="block bg-gradient-to-r from-blue-600 via-violet-600 to-blue-600 bg-clip-text text-transparent"
             >
-              Dream Job
+              Digital Future
             </motion.span>
           </motion.h1>
 
-          {/* Description */}
           <motion.p
             variants={fadeUp}
             className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-slate-600"
           >
-            Join leading companies, accelerate your career and discover
-            opportunities tailored to your skills through our AI-powered
-            recruitment platform.
+            We build custom software, websites, mobile applications,
+            e-commerce platforms, and scalable digital solutions that help
+            businesses grow.
           </motion.p>
 
-          {/* CTA */}
           <motion.div
             variants={fadeUp}
             className="mt-10"
           >
             <Link
-              href="#application-form"
+              href="/contact-us"
               className="group inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-blue-600 to-violet-600 px-8 py-4 font-semibold text-white shadow-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_45px_rgba(59,130,246,.35)]"
             >
-              Apply Now
+              Start Your Project
 
               <ArrowRight
                 size={18}

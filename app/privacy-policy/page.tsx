@@ -15,40 +15,40 @@ const sections = [
     id: "introduction",
     title: "Introduction",
     content:
-      "VISEZY Staffing Solutions is committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy explains how we collect, use, store, and protect your data when you interact with our website and services.",
+      "VISEZY is committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy explains how we collect, use, store, and protect your information when you interact with our website, digital products, and software development services.",
   },
   {
     id: "information",
     title: "Information We Collect",
     points: [
-      "Personal information such as name, email address, phone number and resume.",
-      "Professional details including skills, education and work experience.",
-      "Device information such as browser type, IP address and operating system.",
-      "Website usage analytics and interaction data.",
+      "Personal information such as your name, email address, phone number, and company details.",
+      "Project-related information, requirements, business details, and communication shared with our team.",
+      "Device information such as browser type, IP address, operating system, and device information.",
+      "Website usage, analytics, and interaction data to improve our digital experiences.",
     ],
   },
   {
     id: "usage",
     title: "How We Use Your Information",
     points: [
-      "To provide recruitment and staffing services.",
-      "To connect candidates with potential employers.",
-      "To improve user experience and platform performance.",
-      "To communicate updates and relevant opportunities.",
-      "To comply with legal and regulatory obligations.",
+      "To provide software development, web development, mobile application, and digital services.",
+      "To understand project requirements and communicate with clients regarding ongoing or upcoming projects.",
+      "To improve our website, products, services, performance, and user experience.",
+      "To provide project updates, service-related communication, and relevant information.",
+      "To comply with applicable legal, regulatory, and security requirements.",
     ],
   },
   {
     id: "security",
     title: "Security & Data Protection",
     content:
-      "We implement industry-standard security measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction. While we strive for maximum security, no online platform can guarantee complete protection.",
+      "We implement appropriate technical and organizational security measures to protect your information against unauthorized access, alteration, disclosure, or destruction. While we continuously work to maintain a secure environment, no online system can guarantee complete protection.",
   },
   {
     id: "retention",
     title: "Data Retention",
     content:
-      "We retain your information only as long as necessary to provide our services, fulfill legal obligations, resolve disputes, and enforce agreements.",
+      "We retain information only for as long as necessary to provide our services, manage projects, fulfill contractual and legal obligations, resolve disputes, maintain business records, and enforce applicable agreements.",
   },
 ];
 
@@ -96,8 +96,8 @@ export default function PrivacyPolicyPage() {
             </h1>
 
             <p className="mx-auto mt-6 max-w-2xl text-lg text-slate-600">
-              Transparency, trust and security are at the core of everything we
-              do. Learn how VISEZY protects and manages your data.
+              Transparency, trust, and security are at the core of everything
+              we do. Learn how VISEZY protects and manages your information.
             </p>
 
             <div className="mt-8 inline-flex rounded-full bg-slate-100 px-4 py-2 text-sm text-slate-600">
@@ -266,7 +266,7 @@ export default function PrivacyPolicyPage() {
 
                 <p className="max-w-2xl text-blue-100">
                   If you have any questions regarding this Privacy Policy or
-                  how your data is handled, our team is here to help.
+                  how your information is handled, our team is here to help.
                 </p>
               </div>
 

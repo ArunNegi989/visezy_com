@@ -2,23 +2,30 @@
 
 import { ChevronDown } from "lucide-react";
 import { motion, AnimatePresence, type Variants } from "framer-motion";
-
-import { useState } from "react";
+import { useState, useRef } from "react";
 import CountUp from "react-countup";
 import { useInView } from "framer-motion";
-import { useRef } from "react";
+
 const faqs = [
   {
-    q: "What types of candidates do you recruit?",
-    a: "We recruit talent across multiple industries and job functions.",
+    q: "What type of software solutions does VISEZY develop?",
+    a: "We build custom web applications, mobile apps, e-commerce platforms, business software, APIs, dashboards, and scalable digital solutions tailored to specific business requirements.",
   },
   {
-    q: "How does your recruitment process work?",
-    a: "We leverage AI-powered screening and matching for faster hiring.",
+    q: "How does your software development process work?",
+    a: "We start by understanding your business requirements, define the solution architecture, create the user experience, develop and test the product, and then deploy and support the solution.",
   },
   {
-    q: "What are your fees?",
-    a: "Pricing depends on the engagement model and role requirements.",
+    q: "Can you build a custom solution for my business?",
+    a: "Yes. We develop custom software based on your business goals, workflows, users, integrations, and scalability requirements rather than relying only on one-size-fits-all solutions.",
+  },
+  {
+    q: "Do you develop mobile applications?",
+    a: "Yes. We develop modern mobile applications for Android and iOS, along with the backend APIs and integrations required to support the application.",
+  },
+  {
+    q: "Do you provide support after project delivery?",
+    a: "Yes. We can provide ongoing maintenance, technical support, performance improvements, updates, and further feature development based on your requirements.",
   },
 ];
 
@@ -70,6 +77,7 @@ export default function FAQ() {
     once: true,
     amount: 0.4,
   });
+
   return (
     <section
       id="faq"
@@ -99,18 +107,16 @@ export default function FAQ() {
         {/* Left */}
         <motion.div variants={fadeLeft}>
           <h2 className="text-4xl font-bold leading-tight text-slate-900">
-            Find Interview-ready Candidates in 24 Hours
+            Building Digital Solutions That Fit Your Business
           </h2>
 
           <p className="mt-6 max-w-lg text-lg leading-8 text-slate-600">
-            Our AI-driven recruitment platform connects employers with
-            qualified professionals faster, smarter, and more accurately.
+            From custom software and web applications to mobile apps and
+            e-commerce platforms, we help businesses turn ideas into scalable
+            digital products.
           </p>
 
-          <div
-            ref={statsRef}
-            className="mt-10 flex gap-10"
-          >
+          <div ref={statsRef} className="mt-10 flex gap-10">
             <motion.div
               whileHover={{
                 y: -6,
@@ -130,7 +136,7 @@ export default function FAQ() {
               </h3>
 
               <p className="mt-2 text-slate-500">
-                Trusted Companies
+                Projects Delivered
               </p>
             </motion.div>
 
@@ -145,15 +151,15 @@ export default function FAQ() {
                 {isInView && (
                   <CountUp
                     start={0}
-                    end={750}
+                    end={98}
                     duration={2.2}
                   />
                 )}
-                +
+                %
               </h3>
 
               <p className="mt-2 text-slate-500">
-                Successful Hires
+                Client Satisfaction
               </p>
             </motion.div>
           </div>

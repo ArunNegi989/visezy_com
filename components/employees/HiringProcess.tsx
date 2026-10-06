@@ -1,28 +1,28 @@
 "use client";
 
-import { motion, type Variants } from "framer-motion";
 import SectionHeading from "@/components/shared/SectionHeading";
+import { motion, type Variants } from "framer-motion";
 
 const steps = [
   {
-    title: "Submit Resume",
+    title: "Understand Requirements",
     description:
-      "Upload your resume and share your profile details with our recruitment team.",
+      "We understand your business goals, users, challenges, technical requirements, and project vision.",
   },
   {
-    title: "Profile Review",
+    title: "Plan & Design",
     description:
-      "Our experts evaluate your skills, experience and career goals.",
+      "We define the solution architecture, user experience, technology stack, and development roadmap.",
   },
   {
-    title: "Interview Process",
+    title: "Build & Test",
     description:
-      "Connect with top companies through streamlined interview rounds.",
+      "Our team develops the solution while continuously testing functionality, performance, security, and usability.",
   },
   {
-    title: "Get Hired",
+    title: "Launch & Support",
     description:
-      "Receive offers and start your next career opportunity with confidence.",
+      "We deploy your product and provide ongoing maintenance, improvements, and technical support.",
   },
 ];
 
@@ -100,9 +100,9 @@ export default function HiringProcess() {
 
       <div className="container">
         <SectionHeading
-          badge="Hiring Journey"
-          title="Your Path To Success"
-          description="A streamlined recruitment process designed to connect talented professionals with leading companies."
+          badge="Our Process"
+          title="From Idea To Digital Product"
+          description="A transparent and structured development process designed to turn your ideas into reliable, scalable, and user-focused digital solutions."
         />
 
         <motion.div
@@ -147,7 +147,7 @@ export default function HiringProcess() {
                     : "md:translate-y-12"
                 }`}
               >
-                                {/* Timeline Dot */}
+                {/* Timeline Dot */}
                 <motion.div
                   animate={{
                     scale: [1, 1.25, 1],
@@ -174,31 +174,12 @@ export default function HiringProcess() {
                     stiffness: 280,
                     damping: 18,
                   }}
-                  className="
-                    relative
-                    z-30
-                    overflow-hidden
-                    rounded-[32px]
-                    border
-                    border-slate-200/80
-                    bg-white/95
-                    p-8
-                    text-center
-                    backdrop-blur-xl
-                    shadow-[0_12px_40px_rgba(15,23,42,.08)]
-                    transition-all
-                    duration-500
-                    hover:border-blue-200
-                    hover:shadow-[0_30px_80px_rgba(37,99,235,.18)]
-                  "
+                  className="relative z-30 overflow-hidden rounded-[32px] border border-slate-200/80 bg-white/95 p-8 text-center backdrop-blur-xl shadow-[0_12px_40px_rgba(15,23,42,.08)] transition-all duration-500 hover:border-blue-200 hover:shadow-[0_30px_80px_rgba(37,99,235,.18)]"
                 >
-                  {/* Hover Glow */}
                   <div className="absolute inset-0 bg-gradient-to-br from-blue-500/[0.04] via-indigo-500/[0.03] to-violet-500/[0.04] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
-                  {/* Top Gradient */}
                   <div className="absolute left-0 top-0 h-1 w-full origin-left scale-x-0 bg-gradient-to-r from-blue-600 via-indigo-600 to-violet-600 transition-transform duration-500 group-hover:scale-x-100" />
 
-                  {/* Number */}
                   <motion.div
                     animate={{
                       y: [0, -6, 0],
@@ -212,40 +193,8 @@ export default function HiringProcess() {
                       rotate: 10,
                       scale: 1.15,
                     }}
-                    className="
-                      relative
-                      mx-auto
-                      mb-6
-                      flex
-                      h-16
-                      w-16
-                      items-center
-                      justify-center
-                      rounded-full
-                      bg-gradient-to-br
-                      from-blue-600
-                      via-indigo-600
-                      to-violet-600
-                      text-2xl
-                      font-bold
-                      text-white
-                      shadow-[0_15px_35px_rgba(37,99,235,.35)]
-                    "
+                    className="relative mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-blue-600 via-indigo-600 to-violet-600 text-2xl font-bold text-white shadow-[0_15px_35px_rgba(37,99,235,.35)]"
                   >
-                    <motion.div
-                      animate={{
-                        boxShadow: [
-                          "0 0 0 0 rgba(37,99,235,.45)",
-                          "0 0 0 15px rgba(37,99,235,0)",
-                        ],
-                      }}
-                      transition={{
-                        duration: 2,
-                        repeat: Infinity,
-                      }}
-                      className="absolute inset-0 rounded-full"
-                    />
-
                     {index + 1}
                   </motion.div>
 
@@ -257,7 +206,6 @@ export default function HiringProcess() {
                     {step.description}
                   </p>
 
-                  {/* Bottom Progress */}
                   <motion.div
                     initial={{
                       width: 0,

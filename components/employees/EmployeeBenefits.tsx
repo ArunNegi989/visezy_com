@@ -4,31 +4,31 @@ import { motion, type Variants } from "framer-motion";
 import SectionHeading from "@/components/shared/SectionHeading";
 import {
   Rocket,
-  Users,
-  Globe,
+  Code2,
+  Globe2,
   BadgeCheck,
 } from "lucide-react";
 
 const benefits = [
   {
-    title: "Career Growth",
-    icon: Rocket,
-    desc: "Accelerate your professional journey with personalized career opportunities and continuous development.",
+    title: "Modern Technology",
+    icon: Code2,
+    desc: "We use modern frameworks, development practices, and scalable technologies to build reliable digital products.",
   },
   {
-    title: "Top Companies",
+    title: "Business-Focused Solutions",
     icon: BadgeCheck,
-    desc: "Connect with trusted employers and leading organizations across multiple industries.",
+    desc: "Every solution is designed around your business goals, workflows, customers, and long-term growth.",
   },
   {
-    title: "Global Opportunities",
-    icon: Globe,
-    desc: "Explore exciting job openings worldwide with remote and international career options.",
+    title: "Scalable Architecture",
+    icon: Rocket,
+    desc: "Build digital products that can evolve with your business and handle increasing users, data, and functionality.",
   },
   {
-    title: "Supportive Team",
-    icon: Users,
-    desc: "Receive expert guidance and dedicated support throughout every step of your hiring journey.",
+    title: "End-to-End Development",
+    icon: Globe2,
+    desc: "From strategy and design to development, deployment, and support, we help bring your complete digital vision to life.",
   },
 ];
 
@@ -78,7 +78,7 @@ export default function EmployeeBenefits() {
       />
 
       <motion.div
-        className="absolute right-0 bottom-0 -z-10 h-80 w-80 rounded-full bg-violet-100/40 blur-3xl"
+        className="absolute bottom-0 right-0 -z-10 h-80 w-80 rounded-full bg-violet-100/40 blur-3xl"
         animate={{
           x: [0, -35, 0],
           y: [0, 20, 0],
@@ -93,9 +93,9 @@ export default function EmployeeBenefits() {
 
       <div className="container">
         <SectionHeading
-          badge="Benefits"
-          title="Why Work With Us"
-          description="Helping professionals discover better opportunities with AI-powered recruitment and career guidance."
+          badge="Why VISEZY"
+          title="Technology That Moves Your Business Forward"
+          description="We combine technology, creativity, and business understanding to build digital products that create measurable value."
         />
 
         <motion.div
@@ -124,10 +124,8 @@ export default function EmployeeBenefits() {
                 }}
                 className="group relative overflow-hidden rounded-[28px] border border-slate-200 bg-white p-8 shadow-sm transition-all duration-500 hover:border-blue-100 hover:shadow-2xl"
               >
-                {/* Hover Glow */}
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-50/0 via-blue-50/40 to-violet-50/60 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
-                {/* Icon */}
                 <motion.div
                   whileHover={{
                     rotate: 8,
@@ -145,7 +143,6 @@ export default function EmployeeBenefits() {
                   />
                 </motion.div>
 
-                {/* Content */}
                 <h3 className="relative text-2xl font-bold text-slate-900 transition-colors duration-300 group-hover:text-blue-600">
                   {item.title}
                 </h3>
@@ -154,7 +151,6 @@ export default function EmployeeBenefits() {
                   {item.desc}
                 </p>
 
-                {/* Bottom Accent */}
                 <motion.div
                   initial={{
                     width: 0,
