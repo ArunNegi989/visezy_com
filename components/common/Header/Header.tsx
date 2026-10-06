@@ -32,23 +32,27 @@ export default function Header() {
     >
       <div className="container">
         <div className="flex h-20 items-center justify-between">
-          <Link href="/" className="group">
-            <div className="flex items-center gap-3">
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-600 to-violet-600 text-white shadow-lg transition-transform duration-300 group-hover:rotate-6">
-                V
-              </div>
+         <Link href="/" className="group">
+  <div className="flex items-center gap-3">
+    <div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-2xl bg-white shadow-lg transition-transform duration-300 group-hover:rotate-6">
+      <img
+        src="/visezy-logo.png"
+        alt="Visezy Logo"
+        className="h-full w-full object-contain"
+      />
+    </div>
 
-              <div>
-                <h2 className="text-2xl font-bold tracking-tight">
-                  VISEZY
-                </h2>
+    <div>
+      <h2 className="text-2xl font-bold tracking-tight">
+        VISEZY
+      </h2>
 
-                <p className="text-xs text-slate-500">
-                 Technology Solutions
-                </p>
-              </div>
-            </div>
-          </Link>
+      <p className="text-xs text-slate-500">
+        Solutions
+      </p>
+    </div>
+  </div>
+</Link>
 
           <nav className="hidden items-center gap-10 lg:flex">
             {navLinks.map((link) => (
