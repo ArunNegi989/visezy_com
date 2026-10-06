@@ -13,15 +13,25 @@ export default function Footer() {
       <div className="container py-16">
         {/* Top Section */}
         <div className="mb-12 flex flex-col gap-8 border-b border-slate-200 pb-8 md:flex-row md:items-center md:justify-between">
-          <div>
-            <h3 className="text-2xl font-bold text-slate-900">
-              VISEZY
-            </h3>
+          <div className="flex items-center gap-3">
+  <div className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-xl bg-white shadow-sm">
+    <img
+      src="/visezy-logo.png"
+      alt="Visezy Logo"
+      className="h-full w-full object-contain"
+    />
+  </div>
 
-            <p className="mt-1 text-sm text-slate-500">
-             Technology Solutions
-            </p>
-          </div>
+  <div>
+    <h3 className="text-2xl font-bold text-slate-900">
+      VISEZY
+    </h3>
+
+    <p className="mt-1 text-sm text-slate-500">
+      Solutions
+    </p>
+  </div>
+</div>
 
           <div className="flex items-center gap-4">
             <Link

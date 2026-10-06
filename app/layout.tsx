@@ -14,6 +14,13 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+export const metadata = {
+  title: "Visezy",
+  icons: {
+    icon: "/visezy-logo.png",
+  },
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -26,10 +33,11 @@ export default function RootLayout({
     >
       <body className="min-h-screen flex flex-col">
         <LayoutWrapper>{children}</LayoutWrapper>
+
         <ToastContainer
-position="top-right"
-autoClose={3000}
-/>
+          position="top-right"
+          autoClose={3000}
+        />
       </body>
     </html>
   );
