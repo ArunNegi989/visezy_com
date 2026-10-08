@@ -15,6 +15,7 @@ import {
 
 import { useAdmin } from "@/app/context/AdminContext";
 import styles from "./Sidebar.module.css";
+import { FaBullhorn } from "react-icons/fa";
 
 const menu = [
   {
@@ -32,6 +33,11 @@ const menu = [
     href: "/admin/sliders",
     icon: Images,
   },
+  {
+  title: "Marquee",
+  icon: FaBullhorn,
+  href: "/admin/marquee",
+},
   {
     title: "Contact Leads",
     href: "/admin/contacts",

@@ -1,0 +1,88 @@
+.marquee {
+  width: 100%;
+  overflow: hidden;
+  background: linear-gradient(to right, #2563eb, #7c3aed);
+  color: #ffffff;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.track {
+  display: flex;
+  width: max-content;
+
+  animation: marquee 24s linear infinite;
+
+  white-space: nowrap;
+}
+
+.track a {
+  display: flex;
+  align-items: center;
+
+  width: max-content;
+
+  padding: 11px 0;
+
+  color: inherit;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  text-decoration: none;
+}
+
+.track span {
+  display: inline-flex;
+  align-items: center;
+
+  margin: 0 22px;
+}
+
+.separator {
+  color: #60a5fa !important;
+
+  margin: 0 8px !important;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-25%);
+  }
+}
+
+.track:hover {
+  animation-play-state: paused;
+}
+
+@media (max-width: 768px) {
+  .track a {
+    padding: 9px 0;
+
+    font-size: 12px;
+  }
+
+  .track span {
+    margin: 0 16px;
+  }
+
+  .separator {
+    margin: 0 5px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .track a {
+    font-size: 11px;
+  }
+
+  .track span {
+    margin: 0 13px;
+  }
+}
